@@ -11,3 +11,4 @@ class Manager:
         return
     def test(self):
         print("Test for manager instance")
+
