@@ -1,12 +1,13 @@
 from datetime import datetime
+from transaction import Transaction
 
-class finances:
-    #add into code the relevant categories for adding excpeses and income. Establish transaction to finances relationship
+class Finances:
     expense_categories = ["Groceries", "Fuel", "Gifts", "Charity", "Household", "Rent", "Bills", "Misc"]
     income_categories = ["Salary", "Gifts", "Dividends", "Student Loans", "Side Hustles"]
 
     def __init__(self, pay):
         self.week_pay = pay
+        self.transactions = []
         return;
 
     def financeInterface(self):
@@ -20,42 +21,29 @@ class finances:
         return
 
     def addIncome(self):
-        #add category, date, amount, description
-        print("Adding an income source...\n")
-        category = self.income_category();
-        date = self.transaction_date();
+        print("Adding an income")
+
+        category = Transaction.transaction_category(self, self.income_categories);
+        date = Transaction.transaction_date();
+        amount = Transaction.transaction_amount();
+        desc = Transaction.transaction_desc();
+
+        new_expense = Transaction(category, date, amount, desc, True)
+        self.transactions.append(new_expense)
+        print("Added income successfully!\n")
         return;
-
+    
     def addExpense(self):
-        #adds a transaction with category, date, amount, description
-        #build a menu to choose category
         print("Adding an expense...\n")
-        #select category
-        category = self.expense_category();
-        #select date
-        date = self.transaction_date();
-        #select amount
-        while True:
-            try:
-                amount = int(input("Enter expense amount"))
-                break;
-            except ValueError:
-                print("Incorrect input. Please enter a valid value")
-        #enter description
-        while True:
-            try:
-                desc_choice = input("Would you like to enter a description (Y/N): ")
-                if desc_choice.capitalize == "Y":
-                    desc = input("Enter description: ")
-                    break;
-                elif desc_choice.capitalize == "N":
-                    desc == ""
-                    break;
-                else:
-                    print("Invalid. Please enter Y or N")
-            except Exception:
-                print("An error occurred")
 
+        category = Transaction.transaction_category(self, self.expense_categories);
+        date = Transaction.transaction_date(self);
+        amount = Transaction.transaction_amount(self);
+        desc = Transaction.transaction_desc(self);
+
+        new_expense = Transaction(category, date, amount, desc, False)
+        self.transactions.append(new_expense)
+        print("Added expense successfully!\n")
         #add to csv file
         return;
 
