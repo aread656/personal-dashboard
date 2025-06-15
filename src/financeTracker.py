@@ -43,6 +43,9 @@ class finances:
             except ValueError:
                 print("Incorrect date format. Please use YYYY-MM-DD format")
     
+    def addIncome(self):
+        return;
+
     def addExpense(self):
         #adds a transaction with category, date, amount, description
         #build a menu to choose category
@@ -55,9 +58,27 @@ class finances:
         date = self.select_transaction_date();
 
         #select amount
+        while True:
+            try:
+                amount = int(input("Enter expense amount"))
+                break;
+            except ValueError:
+                print("Incorrect input. Please enter a valid value")
 
         #enter description
-        desc_choice = input("Would you like to enter a description (Y/N): ")
+        while True:
+            try:
+                desc_choice = input("Would you like to enter a description (Y/N): ")
+                if desc_choice.capitalize == "Y":
+                    desc = input("Enter description: ")
+                    break;
+                elif desc_choice.capitalize == "N":
+                    desc == ""
+                    break;
+                else:
+                    print("Invalid. Please enter Y or N")
+            except Exception:
+                print("An error occurred")
 
         #add to csv file
         return;
