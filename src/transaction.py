@@ -1,4 +1,4 @@
-import datetime
+from datetime import datetime
 import uuid
 
 class Transaction:
@@ -11,8 +11,8 @@ class Transaction:
         self.is_income = is_income
 
     def __str__(self):
-        trans_str = "Transaction Details:\n"
-        return;
+        trans_str = "Income" if self.is_income == True else trans_str == "Expense";
+        return f"{trans_str} | {self.date.strftime('%Y-%m-%d')} | {self.category} | £{self.amount:.2f} | {self.description}";
 
     def transaction_category(self, categories):
         for i, category in enumerate(categories):
@@ -42,7 +42,7 @@ class Transaction:
     def transaction_amount(self):
         while True:
             try:
-                amount = int(input("Enter expense amount"))
+                amount = int(input("Enter expense amount: "))
                 break;
             except ValueError:
                 print("Incorrect input. Please enter a valid value")
