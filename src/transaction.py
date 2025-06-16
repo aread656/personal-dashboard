@@ -11,8 +11,8 @@ class Transaction:
         self.is_income = is_income
 
     def __str__(self):
-        trans_str = "Income" if self.is_income == True else trans_str == "Expense";
-        return f"{trans_str} | {self.date.strftime('%Y-%m-%d')} | {self.category} | £{self.amount:.2f} | {self.description}";
+        trans_str = "Income" if self.is_income == True else "Expense";
+        return f"{trans_str} | {self.date.strftime('%Y-%m-%d')} | {self.category} | {self.amount} | {self.desc}";
 
     def transaction_category(self, categories):
         for i, category in enumerate(categories):
@@ -20,7 +20,7 @@ class Transaction:
 
         while True:
             try:
-                menu_selection = int(input(f"Enter your menu selection (1 - {len(categories)})\n"))
+                menu_selection = int(input(f"Enter your menu selection (1 - {len(categories)})\n")) - 1;
                 if 1 <= menu_selection <= len(categories):
                     return (categories[menu_selection])
                 else:
@@ -43,7 +43,7 @@ class Transaction:
         while True:
             try:
                 amount = int(input("Enter expense amount: "))
-                break;
+                return amount;
             except ValueError:
                 print("Incorrect input. Please enter a valid value")
     
@@ -53,7 +53,7 @@ class Transaction:
                 desc_choice = input("Would you like to enter a description (Y/N): ")
                 if desc_choice.strip().upper() == "Y":
                     desc = input("Enter description: ")
-                    break;
+                    return desc;
                 elif desc_choice.strip().upper() == "N":
                     desc = ""
                     break;
