@@ -85,7 +85,7 @@ class Finances:
         return;
 
     def addTransactionCSV(self, transaction, filename = "transactions.csv"):
-        file_exists = os.path.isfile(filename)
+        file_exists = os.path.isfile(filename) and os.path.getsize(filename) > 0
         with open(filename, mode = "a", newline = '', encoding = 'utf-8') as file:
             writer = csv.writer(file);
             if not file_exists:
@@ -111,3 +111,8 @@ class Finances:
         with open(filename, mode = 'w', newline = '', encoding = 'utf-8') as file:
             file.write("")
         return;
+
+"""to be implemented:
+1. searching methods by each attribute of the transactions in the file
+2. deleting transactions
+3. editing transactions"""
