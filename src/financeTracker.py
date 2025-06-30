@@ -1,115 +1,162 @@
 import csv
+from genericpath import exists
 import os
 from datetime import datetime
 from transaction import Transaction
 
 class Finances:
-    expense_categories = ["Groceries", "Fuel", "Gifts", "Charity", "Household", "Rent", "Bills", "Misc"]
-    income_categories = ["Salary", "Gifts", "Dividends", "Student Loans", "Side Hustles", "Misc"]
+    #a class which will manage a collection of transactions
+    #the class will allow for adding, editing, and removing csv file records
 
-    def __init__(self):
+    #a list of all income and expense categories:
+    income_categories = ["Pay", "Gift", "Dividend", "Loans", "Misc"]
+    expense_categories = ["Bills", "Fuel", "Groceries", "Clothing", "Charity", "Emergency", "Leisure", "Misc"]
+
+    def __init__(self, filename = "transactions.csv"):
+        #initialise a finance class instance
+        self.filename = filename
+        self.balance = 0;
         self.transactions = []
+        self.loadTransactions()
         return;
 
-    def financeInterface(self):
-        print("Welcome to the finance interface!")
+    #-------------Adding Income/Expenses----------------#
+    def create_transaction(self, categories, is_income):
+        #prompt the user to input transaction details
+        category = Transaction.transaction_category(self, categories);
+        date = Transaction.transaction_date()
+        amount = Transaction.transaction_amount()
+        desc = Transaction.transaction_desc();
+        
+        new_trans = Transaction(category, date, amount, desc, is_income)
+        #check user if the transaction details are correct
+        print("Please check the details of your transaction...\n")
+        try:
+            print(f"{new_trans}")
+            confirm = input("Confirm transaction details? (Y/N)").strip().upper()
+            if (confirm == "Y"):
+                #addIncome
+                return new_trans;
+            else:
+                print("Transaction cancelled")
+                return;
+        except Exception as e:
+                print(f"An error occurred: {e}")
         return;
-
-    def recommendedBreakdown(self):
-        print(f"Needs: {self.week_pay*0.5}\n")
-        print(f"Wants: {self.week_pay*0.3}\n")
-        print(f"Savings: {self.week_pay*0.2}\n")
-        return
-
     def addIncome(self):
-        print("Adding an income")
-
-        category = Transaction.transaction_category(self, self.income_categories);
-        date = Transaction.transaction_date(self);
-        amount = Transaction.transaction_amount(self);
-        desc = Transaction.transaction_desc(self);
-
-        new_expense = Transaction(category, date, amount, desc, True)
-
-        choice = str(input(f"{new_expense}\nConfirm this transaction? (Y/N)"))
-        if choice.strip().upper() == "Y":
-            self.transactions.append(new_expense);
-            print("Added income successfully!\n")
-        else:
-            print("Transaction cancelled")
+        print("Adding income...")
+        income = self.create_transaction(self, self.income_categories, True)
+        if income:
+            self.transactions.append(income)
+            self.addTransactionCSV(income)
+            print(f"Income added! ID:{income.getID}")
         return;
-
-    def quickAddIncome(self, date, amount, desc, is_income = True, category = "Misc"):
-        date_obj = datetime.strptime(date, "%Y-%m-%d")
-        try:
-            new_income = Transaction(category, date_obj, amount, desc, True)
-            self.addTransactionCSV(new_income)
-            print(f"Income added")
-        except ValueError:
-            print("Invalid input");
-        return;
-
-    def quickAddExpense(self, date, amount, desc, is_income = False, category = "Misc"):
-        date_obj = datetime.strptime(date, "%Y-%m-%d")
-        try:
-            new_expense = Transaction(category, date_obj, amount, desc, False)
-            self.addTransactionCSV(new_expense)
-            print(f"Expense added")
-        except ValueError:
-            print("Invalid input");
-            return;
-    
     def addExpense(self):
-        print("Adding an expense...\n")
-
-        category = Transaction.transaction_category(self, self.expense_categories);
-        date = Transaction.transaction_date(self);
-        amount = Transaction.transaction_amount(self);
-        desc = Transaction.transaction_desc(self);
-
-        new_expense = Transaction(category, date, amount, desc, False)
-
-        choice = str(input(f"{new_expense}\nConfirm this transaction? (Y/N)"))
-        if choice.strip().upper() == "Y":
-            self.transactions.append(new_expense);
-            self.addTransactionCSV(new_expense)
-            print("Added expense successfully!\n")
-        else:
-            print("Transaction cancelled")
-        #add to csv file
+        #add an expense using a CLI
+        print("Adding an expense...")
+        expense = self.create_transaction(self, self.expense_categories, False)
+        if expense:
+            self.transactions.append(expense)
+            self.addTransactionCSV(expense)
+            print(f"Expense added! ID:{expense.getID}")
         return;
 
-    def getAllTransactions(self):
-        for t in self.transactions:
-            print(self.transactions[t])
-        return;
-
-    def addTransactionCSV(self, transaction, filename = "transactions.csv"):
-        file_exists = os.path.isfile(filename) and os.path.getsize(filename) > 0
-        with open(filename, mode = "a", newline = '', encoding = 'utf-8') as file:
-            writer = csv.writer(file);
-            if not file_exists:
-                writer.writerow(["ID", "Type" ,"Amount", "Date", "Category", "Description"])
-            
-            transaction_type = "Income" if transaction.is_income else "Expense"
-            writer.writerow([
-                transaction.id, transaction_type, transaction.amount,
-                transaction.date.strftime("%y-%m-%d"), transaction.category,
-                transaction.desc])
-        return;
-
-    def loadTransactions(self, filename = "transactions.csv"):
-        if not os.path.exists(filename):
-            print("No such transaction file exists")
+    #----------quickAdd methods----------#
+    def quickAdd(self, category, date, amount, desc, is_income):
+        #quick add transaction details
+        try:
+            #creates a date object under the format of YYYY-MM-DD
+            date_obj = datetime.strptime(date, "%Y-%m-%d")
+            #create a new transaction with details
+            new_trans = Transaction(category, date_obj, amount, desc, is_income)
+            self.transactions.append(new_trans)
+            self.addTransactionCSV(new_trans)
+            print(f"{"Income" if is_income else "Expense"} added!")
+        except ValueError:
+            print("Invalid date format. Please use YYYY-MM-DD")
+    def quickAddIncome(self, date, amount, desc, category = "Misc"):
+        #quick add for income, no prompt
+        self.quickAdd(category, date, amount, desc, True)
+    def quickAddExpense(self, date, amount, desc, category = "Misc"):
+        #quick add for expense, no prompt
+        self.quickAdd(category, date, amount, desc, False)
+        
+    #----------listing and searching----------#
+    def listTransactions(self):
+        #lists all transactions
+        if not self.transactions:
+            print("No transactions recorded")
             return;
-        with open(filename, mode = 'r', newline = '', encoding = 'utf-8') as file:
-            reader = csv.DictReader(file)
-            for row in reader:
-                print(row)
+        print("All transactions:\n")
+        for t in self.transactions:
+            print(t)
+    def findTransaction(self):
+        #find a transaction based on attributes
+        return;
 
-    def clearTransactions(self, filename = "transactions.csv"):
-        with open(filename, mode = 'w', newline = '', encoding = 'utf-8') as file:
-            file.write("")
+    #----------editing and deleting----------#
+    def editTransaction(self, trans_id, new_amount = None, new_desc = None):
+        #edits transaction based on ID
+        for t in self.transactions:
+            if (t.id == trans_id):
+                if t.amount is not None:
+                    t.amount = new_amount;
+                if t.desc is not None:
+                    t.desc = new_desc;
+                print(f"Edited transaction:\n {t}")
+                confirm = input("Confirm edit? (Y/N)").strip().upper()
+                if(confirm == "Y"):
+                    self.saveAllTransactions()
+                else:
+                    print("No edits made")
+                return;
+            else:
+                print("No transaction found")
+
+    def deleteTransaction(self, trans_id):
+        #deletes a transaction based on ID
+        for t in self.transactions:
+            if t.id == trans_id:
+                try:
+                    confirm = input(f"Delete transaction? (Y/N)").strip().upper()
+                    if (confirm == "Y"):
+                        self.transactions.remove(t)
+                        print(f"Transaction {trans_id} removed")
+                        self.saveAllTransactions()
+                        return;
+                    else:
+                        print("No transaction deleted")
+                except Exception as e:
+                    print(f"An error occurred: {e}")
+            else:
+                print(f"Transaction is {trans_id} not found")
+
+    #----------CSV management----------#
+    def addTransactionCSV(self, transaction):
+        #adds a transaction to the CSV file
+        #check that the file exists and has length > 0
+        file_exists = os.path.isfile(self.filename) and os.path.getsize(self.filename) > 0;
+        #open file and establish csv writer
+        with open(self.filename, mode = "a", newline = "", encoding = "utf-8") as f:
+            writer = csv.writer(f)
+        #create headers if the csv does not exist, establishing header order
+        if not file_exists:
+            writer.writero(["ID", "Type", "Category", "Date", "Amount", "Desc"])
+        #use writer to input attributes
+        writer.writerow([
+            transaction.id,
+            "Income" if transaction.is_income else "Expense",
+            transaction.category,
+            transaction.date,
+            transaction.amount,
+            transaction.desc
+            ])
+        return;
+    def loadTransactions(self):
+        #load all transactions into self.transactions
+        return;
+    def saveAllTransactions(self):
+        #saves all transactions to the CSV file
         return;
 
 """to be implemented:

@@ -1,4 +1,5 @@
-from datetime import datetime
+from datetime import date, datetime
+from unicodedata import category
 import uuid
 
 class Transaction:
@@ -61,3 +62,33 @@ class Transaction:
                     print("Invalid. Please enter Y or N")
             except Exception:
                 print("An error occurred")
+
+    #----------Getters and setters----------#
+    def getID(self):
+        if self.id:
+            return self.id
+        else:
+            return "Error"
+    def getCategory(self):
+        if self.category:
+            return self.category
+        else:
+            return "Error"
+    def getDate(self):
+        if self.date:
+            return self.date
+        else:
+            return "Error"
+    def getAmount(self):
+        if self.amount:
+            return self.amount
+    def getDesc(self):
+        if self.desc:
+           return self.desc
+        else:
+            return "Error"
+    def getType(self):
+        if (self.is_income):
+            return "This is an income"
+        else:
+            return "This is an expense"
