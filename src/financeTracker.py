@@ -1,5 +1,4 @@
 import csv
-from genericpath import exists
 import os
 from datetime import datetime
 from transaction import Transaction

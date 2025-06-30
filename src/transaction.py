@@ -1,5 +1,4 @@
 from datetime import date, datetime
-from unicodedata import category
 import uuid
 
 class Transaction:
