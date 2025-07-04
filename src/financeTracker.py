@@ -21,10 +21,10 @@ class Finances:
     #-------------Adding Income/Expenses with CLI----------------#
     def create_transaction(self, categories, is_income):
         #prompt the user to input transaction details
-        category = Transaction.transaction_category(categories) 
-        date = Transaction.transaction_date()
-        amount = Transaction.transaction_amount()
-        desc = Transaction.transaction_desc() 
+        category = Transaction.transaction_category(self, categories) 
+        date = Transaction.transaction_date(self)
+        amount = Transaction.transaction_amount(self)
+        desc = Transaction.transaction_desc(self) 
         
         new_trans = Transaction(category, date, amount, desc, is_income)
         #check user if the transaction details are correct
@@ -61,15 +61,15 @@ class Finances:
     def quickAdd(self, category, date, amount, desc, is_income):
         #quick add transaction details
         try:
-            #creates a date object under the format of YYYY-MM-DD
-            date_obj = datetime.strptime(date, "%Y-%m-%d")
+            #creates a date object under the format of DD/MM/YYYY
+            date_obj = datetime.strptime(date, "%d/%m/%Y")
             #create a new transaction with details
             new_trans = Transaction(category, date_obj, amount, desc, is_income)
             self.transactions.append(new_trans)
             self.addTransactionCSV(new_trans)
             print(f"{'Income' if is_income else 'Expense'} added! ID: {new_trans.id}")
         except ValueError:
-            print("Invalid date format. Please use YYYY-MM-DD")
+            print("Invalid date format. Please use DD-MM-YYYY")
 
     def quickAddIncome(self, date, amount, desc, category = "Misc"):
         #quick add for income, no prompt
@@ -88,6 +88,7 @@ class Finances:
         print("\n---All transactions---\n")
         for t in self.transactions:
             print(t)
+
     def findTransaction(self):
         #find a transaction based on attributes
         return
@@ -143,17 +144,67 @@ class Finances:
                 transaction.id,
                 "Income" if transaction.is_income else "Expense",
                 transaction.category,
-                transaction.date.strftime("%Y-%m-%d"),
+                transaction.date.strftime("%Y/%m/%d"),
                 transaction.amount,
                 transaction.desc
                 ])
+
     def loadTransactions(self):
         #load all transactions into self.transactions
-        return
+        file_exists = os.path.isfile(self.filename) and os.path.getsize(self.filename) > 0
+        if not file_exists:
+            print("No transactions found. Starting with an empty list.")
+            return
+        with open(self.filename, mode = "r", newline = "", encoding = "utf-8") as f:
+            reader = csv.DictReader(f)
+            for row in reader:
+                try:
+                    new_trans = Transaction(
+                        category = row["Category"],
+                        date = datetime.strptime(row["Date"], "%d/%m/%Y"),
+                        amount = float(row["Amount"]),
+                        desc = row["Desc"],
+                        is_income = (row["Type"] == "Income")
+                    )
+                    new_trans.id = row["ID"]
+                    self.transactions.append(new_trans)
+                except Exception as e:
+                    print(f"An error occurred: {e}")
     
+    def printAllTransactions(self):
+        if not self.transactions:
+            print("No transactions exist")
+            return
+        print("---Transactions---")
+        for trans in self.transactions:
+            print(trans, end = "\n")
+
+    def clearTransactions(self):
+        if not self.transactions:
+            print("No transactions exist")
+            return
+        confirm = input("Are you sure you want to clear all transactions? (Y/N)").strip().upper()
+        if (confirm == "Y"):
+            self.transactions.clear()
+            self.saveAllTransactions()
+            print("All transactions cleared")
+        else:
+            print("No transactions have been cleared.")
+
     def saveAllTransactions(self):
         #saves all transactions to the CSV file
-        return
+        with open(self.filename, mode = "w", newline = '', encoding = "utf-8") as f:
+            writer = csv.writer(f)
+            writer.writerow(["ID", "Type", "Category", "Date", "Amount", "Desc"])
+            for trans in self.transactions:
+                writer.writerow([
+                    trans.id,
+                    "Income" if trans.is_income else "Expense",
+                    trans.category,
+                    trans.date.strftime("%d/%m/%Y"),
+                    trans.amount,
+                    trans.desc
+                ])
 
 """to be implemented:
 1. searching methods by each attribute of the transactions in the file
