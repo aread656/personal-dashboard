@@ -32,11 +32,11 @@ class Transaction:
 
     def transaction_date(self):
         while True:
-            date_str = input("Enter a date (DD/MM/YYYY): ")
+            date_str = input("Enter a date (YYYY-MM-DD): ")
             try:
-                return datetime.strptime(date_str, "%d/%m/%Y")
+                return datetime.strptime(date_str, "%Y/%m/%d")
             except ValueError:
-                print("Incorrect date format. Please use DD-MM-YYYY format")
+                print("Incorrect date format. Please use YYYY-MM-DD format")
 
     def transaction_amount(self):
         while True:

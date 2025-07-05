@@ -62,14 +62,14 @@ class Finances:
         #quick add transaction details
         try:
             #creates a date object under the format of DD/MM/YYYY
-            date_obj = datetime.strptime(date, "%d/%m/%Y")
+            date_obj = datetime.strptime(date, "%Y-%m-%d")
             #create a new transaction with details
             new_trans = Transaction(category, date_obj, amount, desc, is_income)
             self.transactions.append(new_trans)
             self.addTransactionCSV(new_trans)
             print(f"{'Income' if is_income else 'Expense'} added! ID: {new_trans.id}")
         except ValueError:
-            print("Invalid date format. Please use DD-MM-YYYY")
+            print("Invalid date format. Please use YYYY-MM-DD")
 
     def quickAddIncome(self, date, amount, desc, category = "Misc"):
         #quick add for income, no prompt
@@ -78,7 +78,8 @@ class Finances:
     def quickAddExpense(self, date, amount, desc, category = "Misc"):
         #quick add for expense, no prompt
         self.quickAdd(category, date, amount, desc, False)
-        
+    
+
     #----------listing and searching----------#
     def listTransactions(self):
         #lists all transactions
@@ -144,7 +145,7 @@ class Finances:
                 transaction.id,
                 "Income" if transaction.is_income else "Expense",
                 transaction.category,
-                transaction.date.strftime("%Y/%m/%d"),
+                transaction.date.strftime("%Y-%m-%d"),
                 transaction.amount,
                 transaction.desc
                 ])
@@ -161,7 +162,7 @@ class Finances:
                 try:
                     new_trans = Transaction(
                         category = row["Category"],
-                        date = datetime.strptime(row["Date"], "%d/%m/%Y"),
+                        date = datetime.strptime(row["Date"], "%Y-%m-%d"),
                         amount = float(row["Amount"]),
                         desc = row["Desc"],
                         is_income = (row["Type"] == "Income")
@@ -183,7 +184,7 @@ class Finances:
         if not self.transactions:
             print("No transactions exist")
             return
-        confirm = input("Are you sure you want to clear all transactions? (Y/N)").strip().upper()
+        confirm = input("Are you sure you want to clear all transactions? (Y/N): ").strip().upper()
         if (confirm == "Y"):
             self.transactions.clear()
             self.saveAllTransactions()
@@ -201,7 +202,7 @@ class Finances:
                     trans.id,
                     "Income" if trans.is_income else "Expense",
                     trans.category,
-                    trans.date.strftime("%d/%m/%Y"),
+                    trans.date.strftime("%Y-%m-%d"),
                     trans.amount,
                     trans.desc
                 ])
