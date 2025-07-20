@@ -1,5 +1,6 @@
 from datetime import datetime, timedelta
 import random
+from transaction import Transaction
 
 income_categories = ["Pay", "Gift", "Dividend", "Loans", "Misc"]
 expense_categories = ["Bills", "Fuel", "Groceries", "Clothing", "Charity", "Emergency", "Leisure", "Misc"]
@@ -10,7 +11,7 @@ def random_dates(start, end):
 
 def generate_student_income(n = 50):
     transactions = []
-    start_date = datetime.now - timedelta(days = 365)
+    start_date = datetime.now() - timedelta(days = 365)
     end_date = datetime.now()
 
     for i in range(n):
@@ -39,15 +40,21 @@ def generate_student_income(n = 50):
         
         date = random_dates(start_date, end_date)
 
-        transactions.append({
-            "date": date,
-            "desctiption": description,
-            "category": category,
-            "amount": amount,
-            "type": "expense"
-        })
+        new_trans = Transaction(
+            category = category,
+            date = date,
+            amount = amount,
+            desc = description,
+            is_income = True
+        )
+        transactions.append(new_trans)
 
-        return transactions
+    return transactions
+    
+    def generate_student_expenses(n = 150):
+        transactions = []
+        start = datetime.now() - timedelta(days = 365)
+        end = datetime.now()
 
 """def loadSampleData(financeTracker):
     financeTracker.quickAddIncome("2025-07-03", 200, "Month's Salary", "Pay")

@@ -193,18 +193,18 @@ class Finances:
             print("No transactions have been cleared.")
 
     def saveAllTransactions(self):
-        #saves all transactions to the CSV file
+        #overwrites csv file with self.transactions
         with open(self.filename, mode = "w", newline = '', encoding = "utf-8") as f:
             writer = csv.writer(f)
             writer.writerow(["ID", "Type", "Category", "Date", "Amount", "Desc"])
-            for trans in self.transactions:
+            for transaction in self.transactions:
                 writer.writerow([
-                    trans.id,
-                    "Income" if trans.is_income else "Expense",
-                    trans.category,
-                    trans.date.strftime("%Y-%m-%d"),
-                    trans.amount,
-                    trans.desc
+                    transaction.id,
+                    "Income" if transaction.is_income else "Expense",
+                    transaction.category,
+                    transaction.date.strftime("%Y-%m-%d"),
+                    transaction.amount,
+                    transaction.desc
                 ])
 
 """to be implemented:

@@ -1,4 +1,51 @@
 ID,Type,Category,Date,Amount,Desc
-2763d10f-fb23-4d20-966d-ef3c4f059e2a,Income,Pay,03/07/2025,200,Month's Salary
-32ce28ee-f12c-4e6b-a363-174f5d3df10a,Expense,Bills,04/07/2025,50,Electric Bill
-88ddac1b-2259-4f55-90e7-c06b11aa441f,Expense,Leisure,05/07/2025,20,Bowling
+9243fe98-c029-425b-9c12-3d5d2948bd00,Income,Pay,2024-10-26,294.34,Part-time job
+932c9d6c-336b-42e8-964f-37e853710f9d,Income,Misc,2024-09-09,19.3,Miscellaneous
+5124d213-8231-47b7-bbd0-9a21b5dfdff9,Income,Misc,2024-12-18,19.65,Miscellaneous
+7e2fecd1-81dd-4584-a83b-6af3558a7402,Income,Pay,2025-05-13,207.78,Part-time job
+51bbee8b-5382-4c42-8dd9-9a1d2dfe0f9e,Income,Dividend,2025-07-14,4.51,Stock dividends
+fb5ddc52-0735-4dff-a667-1146b75162f1,Income,Pay,2024-07-20,186.83,Part-time job
+f30493bd-610b-4ffb-9b56-088b2907105c,Income,Pay,2025-04-06,191.79,Part-time job
+2979e4b1-6a21-425e-a344-cbca35895ee4,Income,Pay,2025-04-01,259.25,Part-time job
+db204f42-563f-4b6e-bfee-a0eeb46bbd8b,Income,Pay,2025-04-08,268.26,Part-time job
+5ec49bb1-81b2-491f-b975-b282a6489bcb,Income,Gift,2024-12-17,20.77,Gifts from family/friends
+f58fd4ec-5903-40b4-b310-51c3b8d6ee36,Income,Pay,2025-05-19,111.69,Part-time job
+6961aa13-e580-4de6-a42d-1c32caaef78f,Income,Gift,2025-02-26,23.09,Gifts from family/friends
+e8ecd050-5c67-4acd-9f47-ed36df7c502d,Income,Misc,2024-07-29,6.75,Miscellaneous
+b0809c5f-5340-4153-be04-18ff05509f94,Income,Loans,2025-03-16,1294.74,Student Loans
+aefc98ad-547f-43f0-8540-b309f39e5fba,Income,Misc,2025-02-05,3.25,Miscellaneous
+52139bc8-1ac6-4ad9-9b7c-c1f1b9601c26,Income,Pay,2024-12-28,197.75,Part-time job
+3eff44fd-fe63-4afc-8d34-ff64581cf262,Income,Pay,2024-10-14,299.25,Part-time job
+f0a286a3-afb6-4179-ab98-6a686eea0a06,Income,Gift,2025-07-03,27.82,Gifts from family/friends
+f43542e1-0a7a-48e8-bdf8-1e2de1ede872,Income,Dividend,2025-01-30,2.29,Stock dividends
+832d3f1f-8ed8-4ec2-a264-cd64253d3900,Income,Misc,2025-05-13,9.69,Miscellaneous
+383130fe-a480-4472-8c64-cef289656686,Income,Misc,2025-01-24,18.34,Miscellaneous
+88a63ec5-952b-444f-bf19-67b334835b34,Income,Misc,2024-09-26,8.98,Miscellaneous
+d1f06e31-28a6-468c-b58d-7fa8f5216e0a,Income,Pay,2024-08-25,195.32,Part-time job
+52baa0de-fb0e-455d-ad12-b37de1d9bd48,Income,Pay,2025-07-03,274.32,Part-time job
+7d7f38bb-a8fb-478f-80b8-a7e264cbff0f,Income,Pay,2024-12-29,204.61,Part-time job
+880207c3-5bc2-4f38-a1f4-84124db71b75,Income,Misc,2024-12-27,2.59,Miscellaneous
+689ec64d-c309-4128-a618-eb5ff1926769,Income,Misc,2025-06-10,14.43,Miscellaneous
+e82fde12-d413-4578-9cdc-47b5c340721d,Income,Pay,2025-06-28,232.44,Part-time job
+986a5034-9a99-4a73-9577-62509ec30792,Income,Misc,2024-11-07,16.43,Miscellaneous
+d0d32ba4-d724-4036-99d5-abded03a5512,Income,Gift,2025-05-31,21.05,Gifts from family/friends
+2a523b28-7c9b-4078-be2d-42694a4e14df,Income,Pay,2024-10-01,161.25,Part-time job
+01f23441-5789-4859-a835-cf7bdf7b77f9,Income,Gift,2024-09-10,37.59,Gifts from family/friends
+57956edd-9ca3-4599-9d90-53daf79a7658,Income,Pay,2025-04-17,229.08,Part-time job
+d27a26c7-a039-465a-8981-a78bdf736d85,Income,Gift,2024-10-04,27.53,Gifts from family/friends
+a899beff-d344-4615-bdec-aea588721512,Income,Misc,2025-04-17,17.89,Miscellaneous
+16b49462-04c2-45da-b7a4-b4d54e770c37,Income,Pay,2024-09-04,244.78,Part-time job
+1130a1fc-f352-4fec-a32f-5d4d3b29b6c3,Income,Misc,2024-09-14,15.46,Miscellaneous
+245824fe-e788-4541-b304-1d595a3c8067,Income,Pay,2025-04-16,268.18,Part-time job
+b87076f1-cf02-4970-bcac-7164d2f6e867,Income,Gift,2024-12-23,28.9,Gifts from family/friends
+25692405-ea9f-461c-af00-379c9bbb9d9a,Income,Gift,2024-11-27,36.65,Gifts from family/friends
+0629de7c-4e0a-44b5-941a-7dc07b666e99,Income,Misc,2024-09-15,12.72,Miscellaneous
+21d533ec-72ef-4423-947e-df2049d0f4e7,Income,Misc,2025-04-14,3.73,Miscellaneous
+45de6cdb-584b-4a4b-8083-f7869b1fd52d,Income,Gift,2024-11-21,24.75,Gifts from family/friends
+726b54dc-8638-4b00-bf7e-3853446ae301,Income,Pay,2025-02-07,236.05,Part-time job
+3dd007d3-0bbe-4c4b-8d02-d22759fc0844,Income,Pay,2025-06-06,284.56,Part-time job
+978b6a83-a203-441c-a637-cd5ee52f0775,Income,Misc,2025-01-14,14.58,Miscellaneous
+602594e9-8cf2-44c1-9851-605a97240472,Income,Pay,2025-06-05,216.62,Part-time job
+d2ecae63-06b3-404a-a20c-516185b46900,Income,Pay,2025-03-30,251.23,Part-time job
+e6578d2c-6fca-400d-ab56-1daaf0e6e983,Income,Gift,2025-05-28,36.6,Gifts from family/friends
+056795bc-75c3-475c-bd68-57b5dc9c132f,Income,Pay,2024-12-09,274.96,Part-time job

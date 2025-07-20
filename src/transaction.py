@@ -5,7 +5,14 @@ class Transaction:
     def __init__(self, category, date, amount, desc, is_income):
         self.id = str(uuid.uuid4()); 
         self.category = category
-        self.date = date
+
+        if isinstance(date, str):
+            try:
+                self.date = datetime.strptime(date, "%Y-%m-%d")
+            except ValueError:
+                raise ValueError("Incorrect date string format, expected YYYY-MM-DD")
+        else: self.date = date
+        
         self.amount = amount
         self.desc = desc
         self.is_income = is_income
