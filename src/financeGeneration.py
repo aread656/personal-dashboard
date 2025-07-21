@@ -101,3 +101,5 @@ def generate_student_expenses(n = 150):
         transactions.append(new_trans)
     
     return transactions
+
+#to do: generate method to translate actual bank statement csv
