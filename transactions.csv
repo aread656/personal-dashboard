@@ -1,51 +1,201 @@
 ID,Type,Category,Date,Amount,Desc
-9243fe98-c029-425b-9c12-3d5d2948bd00,Income,Pay,2024-10-26,294.34,Part-time job
-932c9d6c-336b-42e8-964f-37e853710f9d,Income,Misc,2024-09-09,19.3,Miscellaneous
-5124d213-8231-47b7-bbd0-9a21b5dfdff9,Income,Misc,2024-12-18,19.65,Miscellaneous
-7e2fecd1-81dd-4584-a83b-6af3558a7402,Income,Pay,2025-05-13,207.78,Part-time job
-51bbee8b-5382-4c42-8dd9-9a1d2dfe0f9e,Income,Dividend,2025-07-14,4.51,Stock dividends
-fb5ddc52-0735-4dff-a667-1146b75162f1,Income,Pay,2024-07-20,186.83,Part-time job
-f30493bd-610b-4ffb-9b56-088b2907105c,Income,Pay,2025-04-06,191.79,Part-time job
-2979e4b1-6a21-425e-a344-cbca35895ee4,Income,Pay,2025-04-01,259.25,Part-time job
-db204f42-563f-4b6e-bfee-a0eeb46bbd8b,Income,Pay,2025-04-08,268.26,Part-time job
-5ec49bb1-81b2-491f-b975-b282a6489bcb,Income,Gift,2024-12-17,20.77,Gifts from family/friends
-f58fd4ec-5903-40b4-b310-51c3b8d6ee36,Income,Pay,2025-05-19,111.69,Part-time job
-6961aa13-e580-4de6-a42d-1c32caaef78f,Income,Gift,2025-02-26,23.09,Gifts from family/friends
-e8ecd050-5c67-4acd-9f47-ed36df7c502d,Income,Misc,2024-07-29,6.75,Miscellaneous
-b0809c5f-5340-4153-be04-18ff05509f94,Income,Loans,2025-03-16,1294.74,Student Loans
-aefc98ad-547f-43f0-8540-b309f39e5fba,Income,Misc,2025-02-05,3.25,Miscellaneous
-52139bc8-1ac6-4ad9-9b7c-c1f1b9601c26,Income,Pay,2024-12-28,197.75,Part-time job
-3eff44fd-fe63-4afc-8d34-ff64581cf262,Income,Pay,2024-10-14,299.25,Part-time job
-f0a286a3-afb6-4179-ab98-6a686eea0a06,Income,Gift,2025-07-03,27.82,Gifts from family/friends
-f43542e1-0a7a-48e8-bdf8-1e2de1ede872,Income,Dividend,2025-01-30,2.29,Stock dividends
-832d3f1f-8ed8-4ec2-a264-cd64253d3900,Income,Misc,2025-05-13,9.69,Miscellaneous
-383130fe-a480-4472-8c64-cef289656686,Income,Misc,2025-01-24,18.34,Miscellaneous
-88a63ec5-952b-444f-bf19-67b334835b34,Income,Misc,2024-09-26,8.98,Miscellaneous
-d1f06e31-28a6-468c-b58d-7fa8f5216e0a,Income,Pay,2024-08-25,195.32,Part-time job
-52baa0de-fb0e-455d-ad12-b37de1d9bd48,Income,Pay,2025-07-03,274.32,Part-time job
-7d7f38bb-a8fb-478f-80b8-a7e264cbff0f,Income,Pay,2024-12-29,204.61,Part-time job
-880207c3-5bc2-4f38-a1f4-84124db71b75,Income,Misc,2024-12-27,2.59,Miscellaneous
-689ec64d-c309-4128-a618-eb5ff1926769,Income,Misc,2025-06-10,14.43,Miscellaneous
-e82fde12-d413-4578-9cdc-47b5c340721d,Income,Pay,2025-06-28,232.44,Part-time job
-986a5034-9a99-4a73-9577-62509ec30792,Income,Misc,2024-11-07,16.43,Miscellaneous
-d0d32ba4-d724-4036-99d5-abded03a5512,Income,Gift,2025-05-31,21.05,Gifts from family/friends
-2a523b28-7c9b-4078-be2d-42694a4e14df,Income,Pay,2024-10-01,161.25,Part-time job
-01f23441-5789-4859-a835-cf7bdf7b77f9,Income,Gift,2024-09-10,37.59,Gifts from family/friends
-57956edd-9ca3-4599-9d90-53daf79a7658,Income,Pay,2025-04-17,229.08,Part-time job
-d27a26c7-a039-465a-8981-a78bdf736d85,Income,Gift,2024-10-04,27.53,Gifts from family/friends
-a899beff-d344-4615-bdec-aea588721512,Income,Misc,2025-04-17,17.89,Miscellaneous
-16b49462-04c2-45da-b7a4-b4d54e770c37,Income,Pay,2024-09-04,244.78,Part-time job
-1130a1fc-f352-4fec-a32f-5d4d3b29b6c3,Income,Misc,2024-09-14,15.46,Miscellaneous
-245824fe-e788-4541-b304-1d595a3c8067,Income,Pay,2025-04-16,268.18,Part-time job
-b87076f1-cf02-4970-bcac-7164d2f6e867,Income,Gift,2024-12-23,28.9,Gifts from family/friends
-25692405-ea9f-461c-af00-379c9bbb9d9a,Income,Gift,2024-11-27,36.65,Gifts from family/friends
-0629de7c-4e0a-44b5-941a-7dc07b666e99,Income,Misc,2024-09-15,12.72,Miscellaneous
-21d533ec-72ef-4423-947e-df2049d0f4e7,Income,Misc,2025-04-14,3.73,Miscellaneous
-45de6cdb-584b-4a4b-8083-f7869b1fd52d,Income,Gift,2024-11-21,24.75,Gifts from family/friends
-726b54dc-8638-4b00-bf7e-3853446ae301,Income,Pay,2025-02-07,236.05,Part-time job
-3dd007d3-0bbe-4c4b-8d02-d22759fc0844,Income,Pay,2025-06-06,284.56,Part-time job
-978b6a83-a203-441c-a637-cd5ee52f0775,Income,Misc,2025-01-14,14.58,Miscellaneous
-602594e9-8cf2-44c1-9851-605a97240472,Income,Pay,2025-06-05,216.62,Part-time job
-d2ecae63-06b3-404a-a20c-516185b46900,Income,Pay,2025-03-30,251.23,Part-time job
-e6578d2c-6fca-400d-ab56-1daaf0e6e983,Income,Gift,2025-05-28,36.6,Gifts from family/friends
-056795bc-75c3-475c-bd68-57b5dc9c132f,Income,Pay,2024-12-09,274.96,Part-time job
+6dcdbe34-a9a6-4892-b82a-bcc1b126c22f,Income,Pay,2024-08-09,277.77,Part-time job
+96b7d4ad-1d17-44be-8864-c068912c1e17,Income,Pay,2024-09-29,90.32,Part-time job
+91023238-b97f-44c3-bf26-e81bf02ea179,Income,Dividend,2025-05-07,0.75,Stock dividends
+a489f2b3-7e30-4a7e-8350-2c571ce33d61,Income,Loans,2025-04-17,1588.13,Student Loans
+3fd7dc97-eb27-4de1-8643-ac8888287985,Income,Gift,2025-01-25,27.15,Gifts from family/friends
+420c5539-b183-4815-af55-82979270d704,Income,Pay,2024-12-21,281.79,Part-time job
+63c7bdda-bb96-46cf-93df-2e1f5b2da613,Income,Pay,2025-07-10,266.7,Part-time job
+3a25bf17-3cfb-4c26-9d57-3971ec04df29,Income,Misc,2024-11-06,12.99,Miscellaneous
+a84c6576-4497-431e-9d50-417559623563,Income,Pay,2025-01-31,268.14,Part-time job
+0876d6e0-270d-4423-a923-b8243148c08d,Income,Misc,2024-10-07,4.53,Miscellaneous
+14aea73e-69c4-4776-8be8-7af3d977f1bf,Income,Gift,2024-07-30,24.44,Gifts from family/friends
+53c37993-e6fc-4155-932d-2eae38b10091,Income,Dividend,2024-08-10,0.74,Stock dividends
+7eed59b2-da3f-4af7-a17e-53c9d4e55d4b,Income,Pay,2024-08-25,168.93,Part-time job
+e685584b-e1d6-432d-85e7-68ee665cddfa,Income,Gift,2025-05-09,28.62,Gifts from family/friends
+3cba151e-639b-489c-8233-bcf9e4e999be,Income,Pay,2025-03-28,167.79,Part-time job
+e5b853b7-6bbe-4baf-929f-7ecf03c2c2dd,Income,Dividend,2024-11-05,4.18,Stock dividends
+9677213c-581b-455f-aecb-a7ee14015be6,Income,Misc,2025-02-07,6.95,Miscellaneous
+23717de1-07fd-443a-9e48-b2f0a311ad07,Income,Dividend,2025-06-01,1.33,Stock dividends
+73b24b38-59d9-4a5c-8765-c5f6d1a06d88,Income,Gift,2024-12-20,32.21,Gifts from family/friends
+88db5289-449b-4b00-b59a-597bdec180c7,Income,Gift,2024-08-29,34.28,Gifts from family/friends
+7eec928f-ebf1-4c7c-abd5-fed4da6c293e,Income,Misc,2025-03-16,3.66,Miscellaneous
+30ac48e0-2b75-49d9-8df6-9c597cee7ea9,Income,Misc,2024-07-29,9.69,Miscellaneous
+85041901-3de8-4604-8a04-7ff661b174ac,Income,Pay,2025-06-26,86.65,Part-time job
+46c584ad-cb37-4b4e-9c16-761751814678,Income,Misc,2024-12-05,12.53,Miscellaneous
+d7159370-9d51-4a0a-9202-a1a5f7028649,Income,Pay,2025-06-28,126.32,Part-time job
+859b165d-ec4a-447d-a933-22d42f3cee3b,Income,Pay,2025-05-23,101.22,Part-time job
+2cbafe7b-71bf-4b17-9671-0e2d0e5fbb48,Income,Gift,2025-03-31,27.69,Gifts from family/friends
+ada60bf3-e9b5-4144-8ee6-4806d603c4da,Income,Pay,2025-06-30,128.7,Part-time job
+94cc889d-7f9f-4727-b731-4189c0b570b0,Income,Gift,2025-02-21,28.18,Gifts from family/friends
+8d32474f-51ef-4301-b7d0-dd0e42ce5029,Income,Pay,2024-12-12,125.87,Part-time job
+d254aca9-8418-4f48-8cbe-bf6b36b240c1,Income,Misc,2024-12-03,6.37,Miscellaneous
+38ffc59e-bb8a-4364-b637-29d6cadf9772,Income,Dividend,2025-06-01,0.16,Stock dividends
+41b4f748-d483-425c-aa6e-299cbc0542e5,Income,Pay,2025-04-17,215.06,Part-time job
+e34c13dc-2bd6-480e-8eda-c1898336ea0d,Income,Pay,2024-11-28,215.35,Part-time job
+a8ad4330-1d27-46ac-9510-ee0763b21aaa,Income,Pay,2025-03-29,99.13,Part-time job
+aad48a58-7dda-477c-a390-85ed061e79e3,Income,Pay,2024-11-22,253.87,Part-time job
+1f5e4aec-4fb1-46d5-a304-9ca8c51c3b89,Income,Pay,2025-01-14,97.08,Part-time job
+244c5540-f80f-4d39-bc9a-e24790eb8310,Income,Pay,2024-09-11,120.75,Part-time job
+f62182ef-81cd-4feb-8254-c966dd68106f,Income,Misc,2024-08-01,12.14,Miscellaneous
+aab2c543-d4a8-48ec-acd0-96cfc114c458,Income,Pay,2025-06-08,244.87,Part-time job
+e99943a3-a99b-4ae7-a397-def81e78e4d7,Income,Dividend,2025-05-20,1.23,Stock dividends
+bd44b4be-abbe-49f3-bb87-493206946bc4,Income,Dividend,2024-10-02,4.61,Stock dividends
+2ef884ca-aed3-46ba-8faa-67e07cb479c9,Income,Pay,2025-07-20,216.22,Part-time job
+1381fb8f-b5f3-4aa0-8be4-5ab1c76aaab4,Income,Pay,2025-06-08,276.86,Part-time job
+0e04f7bd-6f73-4a7b-9dc1-76e30eb6fa0a,Income,Pay,2025-02-28,226.53,Part-time job
+ee6d8e43-eb59-4964-9245-1e1ad16d4e9c,Income,Pay,2024-09-15,216.85,Part-time job
+daa0d0b3-00fd-45cf-a185-25397fc010ed,Income,Gift,2025-01-30,27.65,Gifts from family/friends
+78477fda-1e12-4998-8506-80ca0f94f0f1,Income,Pay,2025-02-24,190.93,Part-time job
+12ea7109-a069-4b45-a72b-ec96486b37ce,Income,Pay,2024-09-18,136.54,Part-time job
+dd7dca36-8578-4492-a73e-f4090aa9d1ab,Income,Misc,2024-08-19,12.89,Miscellaneous
+b590b118-98b6-4ce9-b2ab-01d32277b3c4,Expense,Groceries,2025-01-04,33,Groceries
+cb3eeb2d-7a0e-4652-8862-70aaa07a668c,Expense,Fuel,2024-08-06,52,Car fuel
+60d8a988-d021-4f24-b562-05bc97c188f8,Expense,Leisure,2025-02-03,16,Entertainment and Leisure
+5a5763ff-5ec1-4a1c-8432-661509c446c4,Expense,Misc,2024-07-27,6,Other miscellaneous
+e6e50378-2bc4-4eee-af69-b55c96c4f0cd,Expense,Misc,2025-02-19,13,Other miscellaneous
+3573ca18-ed11-4ab7-8058-10c3c0b0d14e,Expense,Bills,2025-03-03,445,Monthly rent and bills
+10bfa6f1-f6e1-472b-bc43-6b59cbc6b1da,Expense,Misc,2024-08-13,14,Other miscellaneous
+5427b8af-813e-4b0f-b15a-147051c45049,Expense,Leisure,2025-03-27,20,Entertainment and Leisure
+5af75e4a-2d03-42de-84d2-6ccf2fed4de9,Expense,Groceries,2024-12-16,25,Groceries
+6b979d07-475e-42a9-84f8-120481b007db,Expense,Groceries,2025-04-17,24,Groceries
+3895f07a-16eb-4e00-af34-e63dd4c1d19b,Expense,Fuel,2024-07-25,57,Car fuel
+57f3df52-24cf-43f1-b70a-423737ad286d,Expense,Misc,2024-10-18,18,Other miscellaneous
+a5f386e6-7226-4d62-bd42-249b31fa2d5e,Expense,Groceries,2024-08-06,38,Groceries
+a440d14d-6a2e-4275-b8ee-e79d39dbeb19,Expense,Bills,2024-08-07,422,Monthly rent and bills
+623b10a2-9adb-4057-a149-12660b96e6ef,Expense,Clothing,2024-12-16,34,Clothing
+9308cb01-c559-4d38-b485-099f00834688,Expense,Groceries,2025-05-24,31,Groceries
+9a0632d3-272e-4140-8b77-3016c7532a86,Expense,Groceries,2024-10-09,32,Groceries
+3d686589-8b6b-42c7-b5e3-38322fa0a44a,Expense,Groceries,2024-10-31,33,Groceries
+619b2cbc-a841-4355-82f8-5aa70448b3ea,Expense,Fuel,2025-01-04,61,Car fuel
+50af1c9b-ce75-4b79-8f59-481974d49299,Expense,Charity,2025-05-24,24,Foodbank/charity donation
+9700c431-d5b1-49fd-8d99-adeb5fca2f11,Expense,Charity,2024-12-25,20,Foodbank/charity donation
+d1b28dd4-e90d-4154-ae55-f96e22e01a6e,Expense,Groceries,2025-02-04,35,Groceries
+d53b1151-1e47-4bbc-92f4-ce92a2202c82,Expense,Groceries,2025-03-09,15,Groceries
+3f8fda5d-1f7a-4d08-81ee-673ee033df4a,Expense,Clothing,2024-10-18,28,Clothing
+e8f2d1e8-f263-418c-95a5-1c39610dbb08,Expense,Misc,2024-11-06,19,Other miscellaneous
+3d0a1c98-c690-40bd-9799-89ea52d53c51,Expense,Groceries,2025-06-15,36,Groceries
+90b60d3a-bb57-4021-82f6-958cbbfbda65,Expense,Misc,2025-07-09,5,Other miscellaneous
+9bf4a87f-cb34-4810-bd00-354d7cfbb7de,Expense,Groceries,2025-01-24,22,Groceries
+b3691c3b-3c80-4346-8030-3da5199f2db0,Expense,Clothing,2024-08-01,28,Clothing
+2f2bf5cc-ff37-4d79-b82e-80fb866b5e8a,Expense,Groceries,2024-10-27,26,Groceries
+7ed2114e-e49e-4e30-b8b7-114a960336be,Expense,Charity,2025-01-11,22,Foodbank/charity donation
+5f7696be-76b4-4a3a-a34e-1c488171c87f,Expense,Misc,2025-05-24,14,Other miscellaneous
+58532423-8e9e-44db-86ab-90972c392366,Expense,Leisure,2025-06-19,15,Entertainment and Leisure
+8d96d337-db8d-4385-a402-66f80e72c8fd,Expense,Groceries,2025-04-15,36,Groceries
+f3f645d0-630b-4d8b-b9e3-aa809f3d6f36,Expense,Charity,2024-10-07,27,Foodbank/charity donation
+3e2c9585-2df8-4863-bb83-7ee3848a796e,Expense,Groceries,2024-09-22,35,Groceries
+9709d9cb-5cec-447d-9262-df506ec38d3f,Expense,Groceries,2025-06-20,25,Groceries
+1f23568f-0811-4e77-b833-8e5b7e3473eb,Expense,Groceries,2024-12-24,18,Groceries
+6d2519d2-c884-4c7c-bf9e-b7b4111b4977,Expense,Misc,2025-04-01,18,Other miscellaneous
+5465f12b-4e55-4307-852c-e53a4b6a3d77,Expense,Groceries,2025-07-17,19,Groceries
+ae30c387-9cb0-498d-b01c-84c3e889da81,Expense,Clothing,2025-04-24,31,Clothing
+548a9caf-73ae-43ad-89e1-1fdb886f9b9f,Expense,Charity,2025-02-26,18,Foodbank/charity donation
+1e6d45c5-c6fe-451b-a116-5193ba06a00f,Expense,Charity,2024-09-05,20,Foodbank/charity donation
+bca0c30e-069e-455c-ae95-597725a5003c,Expense,Groceries,2025-04-05,34,Groceries
+d0484f70-fc4c-451c-8548-7a1750f6a141,Expense,Fuel,2024-09-10,34,Car fuel
+f0b045f4-400b-495e-a51b-b6fa9441dc02,Expense,Misc,2024-11-06,13,Other miscellaneous
+662d3c76-940f-4d54-a329-e042382776cc,Expense,Leisure,2024-10-05,17,Entertainment and Leisure
+133ea2e6-63f9-4914-8163-265ac529cfb2,Expense,Clothing,2025-03-19,16,Clothing
+c42f7c63-c652-4938-b636-700f8ba95a33,Expense,Groceries,2025-03-06,31,Groceries
+d2de7bec-d7fe-4d26-b7d5-9ec393ddaf22,Expense,Fuel,2024-10-26,31,Car fuel
+14d1eced-e645-453f-afda-b9128dfe99b7,Expense,Fuel,2024-09-19,43,Car fuel
+65885824-ab44-4b85-a73d-2007987b6d0a,Expense,Groceries,2025-03-03,31,Groceries
+9c4d3552-9f65-483e-bac2-72c64d243c42,Expense,Bills,2024-09-20,443,Monthly rent and bills
+522ab4cb-c49f-44d7-b31f-5dbe35100374,Expense,Groceries,2024-09-16,34,Groceries
+a6b0fd9f-6ab9-4cc6-ba45-cb68ce65b51b,Expense,Misc,2025-04-22,9,Other miscellaneous
+86a8c2c1-1196-4f08-8c44-031a3a4ab4ea,Expense,Groceries,2025-06-11,28,Groceries
+ebe939ba-7754-44b6-a827-d3d9d48951b3,Expense,Leisure,2025-03-11,25,Entertainment and Leisure
+97740d77-4192-41b0-9902-fc5e9b3841b9,Expense,Leisure,2024-10-11,15,Entertainment and Leisure
+a39d6bc0-4130-4ed4-8685-50fe490b7e0f,Expense,Groceries,2025-03-24,29,Groceries
+e7a40fce-3a76-496e-a3ec-de974e89a69e,Expense,Charity,2024-07-30,23,Foodbank/charity donation
+1be9a134-7ade-4f3b-afa7-3cb37e2b81c3,Expense,Leisure,2024-09-23,12,Entertainment and Leisure
+a15e2fcd-40c8-4458-8215-9bdf2ed96349,Expense,Groceries,2025-05-25,32,Groceries
+99faa9fc-7faa-467b-affa-b23856809e10,Expense,Groceries,2025-05-23,19,Groceries
+287ee0b5-0ece-47c1-be27-9f9ae2a2b193,Expense,Groceries,2025-02-14,21,Groceries
+a63a423a-b09d-4324-ae9a-dae06424f808,Expense,Fuel,2025-01-23,57,Car fuel
+d40774a3-7cb2-4809-ae9a-4d4cfc23e1c0,Expense,Clothing,2024-12-02,27,Clothing
+b76378f3-e4b0-410b-b477-aea0a9a47e92,Expense,Charity,2025-07-02,29,Foodbank/charity donation
+d7a42bb5-b928-41b4-8f67-0b09657f1281,Expense,Leisure,2025-06-02,12,Entertainment and Leisure
+6443c492-8649-4c7c-be4d-b294ca00831d,Expense,Clothing,2024-07-26,28,Clothing
+091bf849-fe0f-4b15-929a-c00d16a5b8ef,Expense,Leisure,2024-07-28,23,Entertainment and Leisure
+24453b7f-ddec-4adb-89df-0a71d2018f81,Expense,Groceries,2025-05-11,16,Groceries
+9a4e6c12-2074-4031-8541-8158e405db6b,Expense,Groceries,2024-10-10,32,Groceries
+2d0a9951-5f1a-4f0d-8e02-d76b4ea70de0,Expense,Fuel,2025-02-19,59,Car fuel
+4aa81c5c-a999-4ab9-b7f2-a4bda5291c56,Expense,Misc,2025-06-19,13,Other miscellaneous
+363ccd27-37f6-4cc4-b273-c901f643d6d3,Expense,Groceries,2024-10-21,18,Groceries
+8c7c9e2c-e804-4acb-9c0d-f7d3a7f91fe0,Expense,Misc,2025-06-16,19,Other miscellaneous
+422e8760-5a57-4df8-9dee-c4b376418db9,Expense,Groceries,2024-10-04,29,Groceries
+f8296e8a-b6ea-4070-abce-a6c71c102a8e,Expense,Leisure,2025-04-29,20,Entertainment and Leisure
+f555cf91-05cc-4a6b-8151-b351f422f902,Expense,Groceries,2024-12-31,21,Groceries
+98ef9f1c-8f2e-453f-bd6a-32ae8bbb10b5,Expense,Misc,2024-12-24,5,Other miscellaneous
+1b30ec32-c6e8-4a08-a892-2bfd784b127a,Expense,Groceries,2025-04-19,35,Groceries
+db62c125-d0b3-48fd-a51f-31170aa75bb6,Expense,Fuel,2024-09-28,51,Car fuel
+55e649c2-1e94-45ee-af42-c2738790eadc,Expense,Misc,2025-01-12,16,Other miscellaneous
+8a37d06f-6fda-4618-9a87-6cd6e681e123,Expense,Groceries,2024-12-19,39,Groceries
+88676e81-9cbe-4cf7-bf64-e91816fc55fb,Expense,Misc,2025-06-21,13,Other miscellaneous
+c517d0f3-adb1-4b16-b771-64533e2bd615,Expense,Groceries,2024-07-21,30,Groceries
+83ae6bda-a227-481b-a164-b2ce439aa725,Expense,Misc,2025-03-02,9,Other miscellaneous
+ea43dcc9-6dba-493d-863d-d515b202b3c6,Expense,Misc,2025-04-06,18,Other miscellaneous
+0a2bf993-91a9-4c02-9e78-cc78b62b5c20,Expense,Misc,2025-04-02,7,Other miscellaneous
+d64c0e81-fbbe-4cc3-b3ee-8832b0f2ec7f,Expense,Fuel,2025-04-12,34,Car fuel
+4832b0a9-5a37-4b4e-bbeb-1cb1fe1ea09d,Expense,Misc,2025-03-02,15,Other miscellaneous
+a26ad854-d9fa-4f8e-912e-740d727a2b2d,Expense,Groceries,2024-08-20,34,Groceries
+0b6bb4e2-c45e-4839-ad7f-e18c719a1ff5,Expense,Groceries,2024-08-18,16,Groceries
+1fb79b25-297f-4189-97c1-b54aba865431,Expense,Leisure,2024-07-28,12,Entertainment and Leisure
+adeece28-512a-420c-b176-e1420b78a2a1,Expense,Bills,2025-03-31,446,Monthly rent and bills
+f373926e-ab58-4cfe-aefa-e127b814570e,Expense,Charity,2024-08-17,16,Foodbank/charity donation
+c5feaf1c-ded5-4a11-8bf0-9412efcaa663,Expense,Bills,2025-06-03,422,Monthly rent and bills
+6964bca7-2efc-4c2b-8fa2-c0135a6921ee,Expense,Groceries,2025-06-14,17,Groceries
+fe0ad921-b03f-4b89-8cc2-68696afccfa6,Expense,Groceries,2024-12-01,35,Groceries
+40c37407-f788-4568-85d1-19a9fce12173,Expense,Groceries,2025-01-20,28,Groceries
+450a4186-df02-47a3-a08c-131531734178,Expense,Bills,2025-03-03,434,Monthly rent and bills
+b32f33fe-e432-4e23-a334-a69c5d5548ac,Expense,Groceries,2025-04-27,34,Groceries
+b9f7bc72-b18d-494a-a74a-cdd87e7fba27,Expense,Fuel,2025-02-12,34,Car fuel
+db6667bc-167d-4b93-8fe7-d7ff37470974,Expense,Leisure,2024-08-21,12,Entertainment and Leisure
+b89ac502-cd72-476a-a378-e9918c03008e,Expense,Groceries,2025-02-19,25,Groceries
+765313a8-3dd0-48aa-981c-c0ef94f91e69,Expense,Leisure,2024-08-09,18,Entertainment and Leisure
+03765681-5914-46a9-9024-b63aa790cb28,Expense,Fuel,2025-03-07,44,Car fuel
+6e0a8f0f-770f-4a5d-967d-f1b2908e3d59,Expense,Groceries,2025-06-16,15,Groceries
+101706b0-9528-4dd7-b0c7-4308394a6dd3,Expense,Charity,2024-12-03,17,Foodbank/charity donation
+71774cab-5b62-4953-b55c-2fe2903888e0,Expense,Groceries,2025-06-18,20,Groceries
+552f6548-e2f7-450e-9abe-9be6dc59ca7f,Expense,Misc,2024-11-09,6,Other miscellaneous
+8b2efb68-709b-446d-8265-0a9c505208ac,Expense,Bills,2024-09-02,426,Monthly rent and bills
+e622486b-aecd-4521-bb59-df3cd67b793f,Expense,Misc,2025-06-23,20,Other miscellaneous
+235d874c-bfd8-4167-9c31-e1294ef123b3,Expense,Fuel,2025-02-11,34,Car fuel
+b5ae501a-e1c8-4c56-9f57-b91484661d00,Expense,Fuel,2024-09-04,62,Car fuel
+aa68e494-2164-48eb-9242-e12e34c0dfd0,Expense,Groceries,2025-07-07,33,Groceries
+44294a2f-11a4-48a6-a5eb-6d2f4b9ed936,Expense,Groceries,2025-02-28,16,Groceries
+8730183e-4eb3-4300-bb27-0d3a1f078c1a,Expense,Misc,2025-01-29,16,Other miscellaneous
+e46ac25c-3ec8-4f50-ac7e-7d7d2aa54317,Expense,Leisure,2025-04-10,13,Entertainment and Leisure
+62ff069e-7225-490b-889e-024b54c8847e,Expense,Leisure,2024-08-28,21,Entertainment and Leisure
+a986dd3f-f5b4-4623-bbaf-e793b97670f5,Expense,Leisure,2025-06-29,14,Entertainment and Leisure
+1777ea27-1a18-402e-acae-bd1da6f55f25,Expense,Charity,2024-12-07,19,Foodbank/charity donation
+e2e22857-2871-4afd-9fc4-329783d1590c,Expense,Clothing,2025-03-29,23,Clothing
+ec8b42c8-42f2-4b4d-9220-9b19bd73ce8c,Expense,Fuel,2024-09-19,64,Car fuel
+331b4c91-2ea6-4688-938a-1f0fce2e2400,Expense,Groceries,2024-12-15,40,Groceries
+7ee6e3db-0fdc-4954-a3c9-8d563e4ee04b,Expense,Groceries,2024-07-24,28,Groceries
+ea71442b-547d-4d30-971a-229808559937,Expense,Groceries,2025-01-08,25,Groceries
+47730e95-b8ab-4cfa-820c-876e34f269dc,Expense,Misc,2025-06-13,14,Other miscellaneous
+bd5e9657-afdc-4ee0-821f-ca2992d065d0,Expense,Groceries,2025-06-18,28,Groceries
+a7123a49-560e-4639-9e82-a3e3cb646639,Expense,Misc,2025-02-02,17,Other miscellaneous
+30095066-17a1-49e7-bc78-1e55fe43834e,Expense,Groceries,2024-11-17,19,Groceries
+d3deba28-37c3-4a80-919e-27358e68f2d4,Expense,Groceries,2024-10-27,23,Groceries
+a693c9f2-424b-4cc9-b723-35133bd835f6,Expense,Misc,2024-09-02,15,Other miscellaneous
+00b367ea-8f9b-4ed0-b0e1-e3838c28ad72,Expense,Groceries,2024-11-22,16,Groceries
+984505c5-b2e4-42c8-958b-a756db12edda,Expense,Charity,2025-02-09,17,Foodbank/charity donation
+125ddcfd-7471-421a-a658-06db47dc32b7,Expense,Misc,2024-08-19,14,Other miscellaneous
+677cbe69-9023-43d6-a8e7-a43d82ee648f,Expense,Leisure,2024-11-15,20,Entertainment and Leisure
+4e3a964e-c864-495c-afc4-afcf39cfc1da,Expense,Misc,2025-04-03,5,Other miscellaneous
+a9e369ad-3d7a-4e07-8515-b10126bd9d76,Expense,Groceries,2024-11-05,32,Groceries
+da1acb3c-3f50-4bf0-bfb2-b25de5b796ae,Expense,Clothing,2024-10-21,22,Clothing
+544a0305-d427-4529-9b22-3671c1b4e344,Expense,Leisure,2025-03-06,22,Entertainment and Leisure
+3654d5be-1679-4e27-b4eb-bbfbe889d308,Expense,Fuel,2024-11-08,36,Car fuel
+13f77118-2948-4134-a092-e6f708a6232e,Expense,Misc,2024-07-23,14,Other miscellaneous
+0569f45d-6c47-413e-bf0c-ec7ec78ed2d5,Expense,Fuel,2025-04-26,63,Car fuel
+825bc564-d0c3-43bb-9d2a-73cf26f90e63,Expense,Leisure,2025-03-14,24,Entertainment and Leisure
+75c67525-00fc-40eb-8794-5b20096c3691,Expense,Misc,2024-08-23,9,Other miscellaneous
+50891fd9-88ce-48b5-bb8d-805985703d23,Expense,Bills,2024-09-21,436,Monthly rent and bills
+d0719db4-cd00-4315-8748-2e8a2f83de04,Expense,Charity,2025-02-01,19,Foodbank/charity donation
+292cd12d-a711-4281-9432-c6b428e4c1f0,Expense,Bills,2024-11-22,434,Monthly rent and bills
+6755a5ca-733b-4e11-adb0-5d7f4e964f79,Expense,Groceries,2024-10-16,30,Groceries
