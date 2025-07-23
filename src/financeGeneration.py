@@ -1,4 +1,5 @@
 from datetime import datetime, timedelta
+import pandas as pd
 import random
 from transaction import Transaction
 
@@ -103,3 +104,9 @@ def generate_student_expenses(n = 150):
     return transactions
 
 #to do: generate method to translate actual bank statement csv
+#read the file
+def CSVStatementConverter(self):
+    return
+#modify the file to give correct categories
+#assign each provided variable to the chosen variables in the other code
+#write and save the file as a new file
