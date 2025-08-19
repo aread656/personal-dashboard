@@ -7,17 +7,16 @@ income_categories = ["Pay", "Gift", "Dividend", "Loans", "Misc"]
 expense_categories = ["Bills", "Fuel", "Groceries", "Clothing", "Charity", "Emergency", "Leisure", "Misc"]
 
 CATEGORY_MAP = {("Salary and pension", "Salary / wages"): "Pay",
-        ("Other income", "Own account transfer"): "Loans",    # assuming transfers are loans
+        ("Other income", "Own account transfer"): "Loans",
         ("Other income", "Other transfers"): "Gift",
         
-        # Expenses
         ("Transport", "Fuel"): "Fuel",
-        ("Transport", "Bus / train"): "Bills",   # regular travel → treat as bills
-        ("Transport", "Plane"): "Leisure",       # flights = holiday/leisure
+        ("Transport", "Bus / train"): "Bills",
+        ("Transport", "Plane"): "Leisure",
         ("Transport", "Parking"): "Bills",
 
         ("Household goods", "Supermarket"): "Groceries",
-        ("Household goods", "Other"): "Groceries",   # general shops
+        ("Household goods", "Other"): "Groceries",
         ("Household goods", None): "Groceries",
 
         ("Recreation and leisure", "Caf� / restaurant"): "Leisure",
@@ -27,14 +26,14 @@ CATEGORY_MAP = {("Salary and pension", "Salary / wages"): "Pay",
         ("Recreation and leisure", "Games / toys"): "Leisure",
 
         ("Other expenses", "Donations"): "Charity",
-        ("Other expenses", "Cash withdrawals"): "Misc",       # ATM cash → misc
-        ("Other expenses", "Own account transfer"): "Misc",   # treat refund/overpay → misc
+        ("Other expenses", "Cash withdrawals"): "Misc",
+        ("Other expenses", "Own account transfer"): "Misc",
 
         ("Clothing, shoes and personal care", "Clothing / shoes"): "Clothing",
-        ("Clothing, shoes and personal care", "Personal care"): "Clothing", # lumped
+        ("Clothing, shoes and personal care", "Personal care"): "Clothing",
 
         ("Housing", "Maintenance"): "Bills",
-        ("Housing", "Other"): "Bills",     # e.g. Belfast Cathedral En
+        ("Housing", "Other"): "Bills",
 
         ("Uncategorised", "Uncategorised"): "Misc",
     }
