@@ -1,7 +1,6 @@
 from datetime import datetime, timedelta
 import csv
 import random
-import numpy as np
 from transaction import Transaction
 
 income_categories = ["Pay", "Gift", "Dividend", "Loans", "Misc"]
@@ -139,7 +138,6 @@ def generate_student_expenses(n = 150):
 
 
 def CSVStatementConverter(filename = "Statement Jan-Jun 25.csv", output = "statement.csv"):
-
     output_rows = []
 
     with open(file = filename, mode = "r", encoding = "cp1252", newline = "") as f:
@@ -171,6 +169,9 @@ def CSVStatementConverter(filename = "Statement Jan-Jun 25.csv", output = "state
             dt = datetime.strptime(line["Date"], "%m/%d/%Y")
             line["Date"] = dt.strftime("%Y-%m-%d")
 
+            #some descriptions have ))))), this removes them
+            line["Text"] = line["Text"].replace(")", "").strip()
+
             #create transaction objects for each line
             new_trans = Transaction(
                 category = line["Category"], 
@@ -179,7 +180,6 @@ def CSVStatementConverter(filename = "Statement Jan-Jun 25.csv", output = "state
                 desc = line["Text"], 
                 is_income = line["is_income"]
             )
-
             output_rows.append(new_trans)
     
     with open(output, mode = "w", encoding = "utf-8", newline = "") as f_out:
