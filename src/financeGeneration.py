@@ -1,6 +1,7 @@
 from datetime import datetime, timedelta
 import csv
 import random
+import numpy as np
 from transaction import Transaction
 
 income_categories = ["Pay", "Gift", "Dividend", "Loans", "Misc"]
@@ -143,7 +144,6 @@ def CSVStatementConverter(filename = "Statement Jan-Jun 25.csv", output = "state
 
     with open(file = filename, mode = "r", encoding = "cp1252", newline = "") as f:
         reader = csv.DictReader(f)
-        print(reader.fieldnames)
 
         for line in reader:
             #remove unecessary categories
@@ -151,31 +151,49 @@ def CSVStatementConverter(filename = "Statement Jan-Jun 25.csv", output = "state
             line.pop("Status", None)
             line.pop("Balance", None)
 
-            #create "desc" attribute
-            line["desc"] = line.pop("Text")
-
             #create is_income attribute for each row
             amount_str = line["Amount"].replace(",", "").strip()
             line["is_income"] = float(amount_str) > 0
-            line["Amount"] = amount_str
+            line["Amount"] = abs(float(amount_str))
 
             #adjust categories to match above categories
-            
+            category_key = (line.get("Category"), line.get("Subcategory"))
+            mapped = CATEGORY_MAP.get(category_key)
 
-            #djust dates into YYYY/MM/DD format
+            if not mapped:
+                line["Category"] = "Misc"
+            else:
+                line["Category"] = mapped
+            
+            line.pop("Subcategory", None)
+
+            #adjust dates into YYYY/MM/DD format
+            dt = datetime.strptime(line["Date"], "%m/%d/%Y")
+            line["Date"] = dt.strftime("%Y-%m-%d")
 
             #create transaction objects for each line
             new_trans = Transaction(
                 category = line["Category"], 
-                date = line["date"], 
+                date = line["Date"], 
                 amount = line["Amount"], 
-                desc = line["desc"], 
+                desc = line["Text"], 
                 is_income = line["is_income"]
             )
 
-            output_rows.append(line)
-    return output_rows
+            output_rows.append(new_trans)
+    
+    with open(output, mode = "w", encoding = "utf-8", newline = "") as f_out:
+        fieldnames = ["category", "date", "amount", "desc", "is_income"]
+        writer = csv.DictWriter(f_out, fieldnames = fieldnames)
+        writer.writeheader()
 
-#modify the file to give correct categories
-#assign each provided variable to the chosen variables in the other code
-#write and save the file as a new file
+        for trans in output_rows:
+            writer.writerow({
+                "category": trans.category,
+                "date": trans.date.strftime("%Y-%m-%d"),
+                "amount": trans.amount,
+                "desc": trans.desc,
+                "is_income": trans.is_income
+            })
+        
+        return output_rows

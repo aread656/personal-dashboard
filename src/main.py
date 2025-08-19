@@ -12,4 +12,5 @@ finances.transactions.extend(generated_expenses)
 finances.printAllTransactions()
 finances.saveAllTransactions()"""
 
-print(fg.CSVStatementConverter())
+finances.transactions.append(fg.CSVStatementConverter())
+finances.printAllTransactions()
