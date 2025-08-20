@@ -18,6 +18,10 @@ class Finances:
         self.transactions = []
         self.loadTransactions()
 
+    #-------------Getter for Finances() instance-----------------#
+    def getAllTransactions(self):
+        return self.transactions
+
     #-------------Adding Income/Expenses with CLI----------------#
     def create_transaction(self, categories, is_income):
         #prompt the user to input transaction details
