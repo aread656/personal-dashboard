@@ -136,7 +136,7 @@ def generate_student_expenses(n = 150):
     return transactions
 
 
-def CSVStatementConverter(filename, output = "statement.csv"):
+def CSVStatementConverter(filename, output = "financeRecords.csv"):
     output_rows = []
 
     with open(file = filename, mode = "r", encoding = "cp1252", newline = "") as f:
