@@ -1,2 +1,3 @@
 # personal-planner
-An application for personal organisation. Currently is limited to the realms of finance tracking, with sample data currently being used, with statistics calculated for the user to view and make deductions on their own financial habits. The program will later have a form of interface, be that command line or GUI.
+An application for personal organisation. Currently is limited to the realms of finance tracking, with sample data currently being used, with statistics calculated for the user to view and make deductions on their own financial habits. The program will later have a form of interface, be that command line or GUI. 
+At present, the program is made to fit a specific format of bank statement of the bank I use personally, the specifics of which are not shared on the public repository, but example statements of identical format will be available and generated for testing purposes.

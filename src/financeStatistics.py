@@ -15,20 +15,16 @@ def totalExpenses(fin) -> float:
 def netIncome(fin) -> float:
     return totalIncome(fin) - totalExpenses(fin)
 
-
 def datesDataset(fin, income_true_false):
     full_dataset = fin.getAllTransactions()
     filtered_dataset = pd.DataFrame(
         {"date": trans.date,
          "amount": trans.amount}
         for trans in full_dataset if trans.is_income == income_true_false)
+    filtered_dataset["month"] = filtered_dataset["date"].dt.month
+    filtered_dataset["month_name"] = filtered_dataset["date"].dt.strftime("%m")
     return filtered_dataset
-def incomeByDates(fin):
-    income_dates_dataset = datesDataset(fin, True)
-    income_dates_dataset["month"] = income_dates_dataset["date"].dt.month
-    income_dates_dataset["month_name"] = income_dates_dataset["date"].dt.strftime("%m")
-    monthly_sums = income_dates_dataset.groupby(["month", "month_name"])["amount"].sum().reset_index().sort_values("month")
-
+def plotIncomeOrExpensesByDates(fin, monthly_sums):
     sns.barplot(data = monthly_sums, x = "month_name", y = "amount",
                 order = monthly_sums["month_name"])
     plt.title("Income by Month")
@@ -36,25 +32,21 @@ def incomeByDates(fin):
     plt.ylabel("Amount")
     plt.show()
     return
+def incomeByDates(fin):
+    income_dates_dataset = datesDataset(fin, True)
+    monthly_sums = income_dates_dataset.groupby(["month", "month_name"])["amount"].sum().reset_index().sort_values("month")
+    plotIncomeOrExpensesByDates(fin, monthly_sums)
+    return
 def expensesByDates(fin):
     expenses_dates_dataset = datesDataset(fin, False)
-    expenses_dates_dataset["month"] = expenses_dates_dataset["date"].dt.month
-    expenses_dates_dataset["month_name"] = expenses_dates_dataset["date"].dt.strftime("%m")
     monthly_sums = expenses_dates_dataset.groupby(["month", "month_name"])["amount"].sum().reset_index().sort_values("month")
-    print(monthly_sums)
-
-    sns.barplot(data = monthly_sums, x = "month_name", y = "amount")
-    plt.title("Expenses by month")
-    plt.xlabel("Month")
-    plt.ylabel("Amount")
-    plt.show()
+    plotIncomeOrExpensesByDates(fin, monthly_sums)
     return
 def netIncomeByDates(fin):
     income_dataset = datesDataset(fin, True)
     expenses_dataset = datesDataset(fin, False)
     #create a net dataset from each dataset's sums
     return
-
 
 def mostCommonCategories(fin):
     return
