@@ -3,7 +3,7 @@ import uuid
 
 class Transaction:
     def __init__(self, category, date, amount, desc, is_income):
-        self.id = str(uuid.uuid4()); 
+        self.id = str(uuid.uuid4().hex[:8]) 
         self.category = category
 
         if isinstance(date, str):

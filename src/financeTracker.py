@@ -11,7 +11,7 @@ class Finances:
     income_categories = ["Pay", "Gift", "Dividend", "Loans", "Misc"]
     expense_categories = ["Bills", "Fuel", "Groceries", "Clothing", "Charity", "Emergency", "Leisure", "Misc"]
 
-    def __init__(self, filename = "transactions.csv"):
+    def __init__(self, filename = "financeRecords.csv"):
         #initialise a finance class instance
         self.filename = filename
         self.balance = 0 
@@ -210,8 +210,3 @@ class Finances:
                     transaction.amount,
                     transaction.desc
                 ])
-
-"""to be implemented:
-1. searching methods by each attribute of the transactions in the file
-2. deleting transactions
-3. editing transactions"""

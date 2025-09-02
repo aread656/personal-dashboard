@@ -135,6 +135,7 @@ def generate_student_expenses(n = 150):
     
     return transactions
 
+#remove the student loans payments, where by "uncategorised", "uncategorised", and >1000
 
 def CSVStatementConverter(filename, output = "financeRecords.csv"):
     output_rows = []
@@ -147,6 +148,9 @@ def CSVStatementConverter(filename, output = "financeRecords.csv"):
             line.pop("Reconciled", None)
             line.pop("Status", None)
             line.pop("Balance", None)
+            #personal code to remove loan payments
+            if line["Text"] == "24085844276" or line["Text"] == "TrueLayer" or "ATM" in line["Text"]:
+                continue
 
             #create is_income attribute for each row
             amount_str = line["Amount"].replace(",", "").strip()

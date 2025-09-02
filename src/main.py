@@ -4,5 +4,12 @@ import financeStatistics as fs
 
 mgr = manager.Manager()
 finances = mgr.financeTracker
-fs.incomeByDates(finances)
+
+finances.clearTransactions()
+finances.transactions = fg.CSVStatementConverter("Statement Jan-Jun 25.csv")
+finances.printAllTransactions()
+finances.saveAllTransactions()
+
+"""fs.incomeByDates(finances)
 fs.expensesByDates(finances)
+fs.netIncomeByDates(finances)"""
