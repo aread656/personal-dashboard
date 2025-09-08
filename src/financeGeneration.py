@@ -149,8 +149,8 @@ def CSVStatementConverter(filename, output = "financeRecords.csv"):
             line.pop("Status", None)
             line.pop("Balance", None)
             #personal code to remove loan payments
-            if line["Text"] == "24085844276" or line["Text"] == "TrueLayer" or "ATM" in line["Text"]:
-                continue
+            """if line["Text"] == "24085844276" or line["Text"] == "TrueLayer" or "ATM" in line["Text"]:
+                continue"""
 
             #create is_income attribute for each row
             amount_str = line["Amount"].replace(",", "").strip()

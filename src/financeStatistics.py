@@ -15,6 +15,10 @@ def printAllIncomesOrExpenses(fin, is_income: bool):
     for trans in transactions:
         print(str(trans))
 
+def filterRecordsByDates(fin, start, end):
+    full_dataset = fin.getAllTransactions()
+    return
+
 def totalIncome(fin) -> float:
     return sum(t.amount for t in fin.getAllTransactions() if t.is_income and t.amount < 1000)
 def totalExpenses(fin) -> float:
@@ -58,8 +62,36 @@ def netIncomeByDates(fin):
     expenses_sums = expenses_dataset.groupby(["month", "month_name"])["amount"].sum().reset_index().sort_values("month")
     net_sums = pd.merge(income_sums, expenses_sums, on = ["month", "month_name"], how = "outer")
     net_sums["net"] = net_sums["amount_x"] - net_sums["amount_y"]
-    print(net_sums["net"])
+    
+    plt.title("Net income  by month")
+    sns.barplot(data = net_sums, x = "month_name", y = "net")
+    plt.xlabel("month")
+    plt.ylabel("net amount")
+    plt.show()
     return
 
 def mostCommonCategories(fin):
-    return
+    dataset = fin.getAllTransactions()
+    #create a count of transaction categories
+    filtered_dataset = pd.DataFrame(
+        {"category": trans.category} for trans in dataset)
+    category_counts = filtered_dataset["category"].value_counts().reset_index()
+    plt.figure(figsize = (8, 5))
+    plt.title("Most common categories")
+    sns.barplot(data = category_counts, x = "category", y = "count")
+    plt.xlabel("Category")
+    plt.ylabel("Number of occurrences")
+    plt.show()
+def amountsByCategory(fin):
+    dataset = fin.getAllTransactions()
+    filtered_dataset = pd.DataFrame(
+        {"category": trans.category,
+         "amount": trans.amount}
+         for trans in dataset)
+    category_sums = filtered_dataset.groupby(["category"])["amount"].sum().reset_index()
+    plt.figure(figsize = (8, 5))
+    plt.title("Amounts by category")
+    sns.barplot(data = category_sums, x = "category", y = "amount")
+    plt.xlabel("Category")
+    plt.ylabel("Amount")
+    plt.show()
