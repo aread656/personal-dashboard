@@ -144,10 +144,10 @@ class Finances:
         with open(self.filename, mode = "a", newline = "", encoding = "utf-8") as f:
             writer = csv.writer(f)
             if not file_exists:
-                writer.writerow(["ID", "Type", "Category", "Date", "Amount", "Desc"])
+                writer.writerow(["id", "type", "category", "date", "amount", "desc"])
             writer.writerow([
                 transaction.id,
-                "Income" if transaction.is_income else "Expense",
+                "income" if transaction.is_income else "expense",
                 transaction.category,
                 transaction.date.strftime("%Y-%m-%d"),
                 transaction.amount,
@@ -165,13 +165,13 @@ class Finances:
             for row in reader:
                 try:
                     new_trans = Transaction(
-                        category = row["Category"],
-                        date = datetime.strptime(row["Date"], "%Y-%m-%d"),
-                        amount = float(row["Amount"]),
-                        desc = row["Desc"],
-                        is_income = (row["Type"] == "Income")
+                        category = row["category"],
+                        date = datetime.strptime(row["date"], "%Y-%m-%d"),
+                        amount = float(row["amount"]),
+                        desc = row["desc"],
+                        is_income = (row["type"] == "income")
                     )
-                    new_trans.id = row["ID"]
+                    new_trans.id = row["id"]
                     self.transactions.append(new_trans)
                 except Exception as e:
                     print(f"An error occurred: {e}")
@@ -200,11 +200,11 @@ class Finances:
         #overwrites csv file with self.transactions
         with open(self.filename, mode = "w", newline = '', encoding = "utf-8") as f:
             writer = csv.writer(f)
-            writer.writerow(["ID", "Type", "Category", "Date", "Amount", "Desc"])
+            writer.writerow(["id", "type", "category", "date", "amount", "desc"])
             for transaction in self.transactions:
                 writer.writerow([
                     transaction.id,
-                    "Income" if transaction.is_income else "Expense",
+                    "income" if transaction.is_income else "expense",
                     transaction.category,
                     transaction.date.strftime("%Y-%m-%d"),
                     transaction.amount,
