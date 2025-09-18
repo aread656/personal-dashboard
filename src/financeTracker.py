@@ -18,10 +18,10 @@ class Finances:
         self.transactions = []
         self.loadTransactions()
 
-    #-------------Getter for Finances() instance-----------------#
+    #-------------Getters for Finances() instance-----------------#
     def getAllTransactions(self):
         return self.transactions
-
+    
     #-------------Adding Income/Expenses with CLI----------------#
     def create_transaction(self, categories, is_income):
         #prompt the user to input transaction details
@@ -118,10 +118,10 @@ class Finances:
                 return
         print("No transaction found")
 
-    def deleteTransaction(self, trans_id):
+    def deleteTransaction(self, trans_id = None, trans_amount = None, trans_desc = None):
         #deletes a transaction based on ID
         for t in self.transactions:
-            if t.id == trans_id:
+            if t.id == trans_id or t.amount == trans_amount or t.desc == trans_desc:
                 try:
                     print(f"\nFound transaction:\n{t}")
                     confirm = input(f"Delete transaction? (Y/N): ").strip().upper()

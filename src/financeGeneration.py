@@ -46,14 +46,12 @@ def generate_student_income(n = 50):
     transactions = []
     start_date = datetime.now() - timedelta(days = 365)
     end_date = datetime.now()
-
     for i in range(n):
         category = random.choices(
             population = income_categories,
             weights = [50, 20, 8, 2, 20],
             k = 1
         )[0]
-
         match category:
             case "Pay":
                 amount = round(random.uniform(80, 300), 2)
@@ -70,9 +68,7 @@ def generate_student_income(n = 50):
             case "Misc":
                 amount = round(random.uniform(2, 20), 2)
                 description = "Miscellaneous"
-        
         date = random_dates(start_date, end_date)
-
         new_trans = Transaction(
             category = category,
             date = date,
@@ -81,21 +77,18 @@ def generate_student_income(n = 50):
             is_income = True
         )
         transactions.append(new_trans)
-
     return transactions
     
 def generate_student_expenses(n = 150):
     transactions = []
     start = datetime.now() - timedelta(days = 365)
     end = datetime.now()
-
     for i in range(n):
         category = random.choices(
             population = expense_categories,
             weights = [5, 10, 30, 5, 10, 2, 15, 20],
             k = 1
         )[0]
-
         match category:
             case "Bills":
                 amount = round(random.uniform(420, 450), 2)
@@ -121,9 +114,7 @@ def generate_student_expenses(n = 150):
             case "Misc":
                 amount = round(random.uniform(5, 20), 2)
                 description = "Other miscellaneous"
-
         date = random_dates(start, end)
-
         new_trans = Transaction(
             category = category,
             date = date,
@@ -132,25 +123,19 @@ def generate_student_expenses(n = 150):
             is_income = False
         )
         transactions.append(new_trans)
-    
     return transactions
 
 #remove the student loans payments, where by "uncategorised", "uncategorised", and >1000
 
 def CSVStatementConverter(filename, output = "financeRecords.csv"):
     output_rows = []
-
     with open(file = filename, mode = "r", encoding = "cp1252", newline = "") as f:
         reader = csv.DictReader(f)
-
         for line in reader:
             #remove unecessary categories
             line.pop("Reconciled", None)
             line.pop("Status", None)
             line.pop("Balance", None)
-            #personal code to remove loan payments
-            """if line["Text"] == "24085844276" or line["Text"] == "TrueLayer" or "ATM" in line["Text"]:
-                continue"""
 
             #create is_income attribute for each row
             amount_str = line["Amount"].replace(",", "").strip()
@@ -184,12 +169,10 @@ def CSVStatementConverter(filename, output = "financeRecords.csv"):
                 is_income = line["is_income"]
             )
             output_rows.append(new_trans)
-    
     with open(output, mode = "w", encoding = "utf-8", newline = "") as f_out:
         fieldnames = ["category", "date", "amount", "desc", "is_income"]
         writer = csv.DictWriter(f_out, fieldnames = fieldnames)
         writer.writeheader()
-
         for trans in output_rows:
             writer.writerow({
                 "category": trans.category,
@@ -197,6 +180,5 @@ def CSVStatementConverter(filename, output = "financeRecords.csv"):
                 "amount": trans.amount,
                 "desc": trans.desc,
                 "is_income": trans.is_income
-            })
-        
+            })  
         return output_rows
