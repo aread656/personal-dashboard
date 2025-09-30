@@ -125,8 +125,6 @@ def generate_student_expenses(n = 150):
         transactions.append(new_trans)
     return transactions
 
-#remove the student loans payments, where by "uncategorised", "uncategorised", and >1000
-
 def CSVStatementConverter(filename, output = "financeRecords.csv"):
     output_rows = []
     with open(file = filename, mode = "r", encoding = "cp1252", newline = "") as f:

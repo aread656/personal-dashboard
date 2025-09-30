@@ -3,9 +3,6 @@ def removeUnwantedRows(fin):
     #these transactions do not represent an actual loss of personal wealth,
     #rather a transition between accounts out of the scope of this tracker
     #personal code to remove loan payments
-    """if line["Text"] == "24085844276" or line["Text"] == "TrueLayer" or "ATM" in line["Text"]:
-        continue"""
-    
     fin.transactions = [
         trans for trans in fin.transactions
         if not(
