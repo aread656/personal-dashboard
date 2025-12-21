@@ -65,5 +65,15 @@ class Transaction:
                     break
                 else:
                     print("Invalid. Please enter Y or N")
-            except Exception:
-                print("An error occurred")
+            except Exception as e:
+                print("An error occurred: " + e)
+
+    def transaction_type(self):
+        while True:
+            try:
+                type_choice = input("Is this an expense or an income? (I/E)")
+                if type_choice.strip().upper() == "I":
+                    return True
+                return False
+            except Exception as e:
+                print("An error occurred: " + e)
