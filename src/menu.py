@@ -1,5 +1,7 @@
 from financeTracker import Finances
 import financeStatistics as fs
+import financeGeneration as fg
+import os
 class Menu:
 
     def __init__(self):
@@ -97,4 +99,52 @@ class Menu:
         return
 
     def modifyMenu(self):
+        print("Modification Menu")
+        while(True):
+            print("1. Add New Items from Statement\n2. Add Transaction Manually\n3. Delete All Transactions" \
+            "\n4. Delete a Single Transaction\n5. Edit Transaction\n6. List All Transactions\n" \
+            "7. Generate Sample Transactions\n8. Save Changes\n9. Main Menu")
+            option = self.getUserOption(7)
+            match(option):
+                case 1:
+                    return
+                case 2:
+                    self.f.addTransactionCSV(self.f.create_transaction())
+                    return
+                case 3:
+                    self.f.clearTransactions()
+                    return
+                case 4:
+                    self.f.deleteTransaction()
+                    return
+                case 5:
+                    self.f.editTransaction()
+                    return
+                case 6:
+                    self.f.listTransactions()
+                    return
+                case 7:
+                    fg.generate_sample_income()
+                    fg.generate_sample_expenses()
+                    return
+                case 8:
+                    self.mainMenu()
+                    return
         return
+    def statementInput(self):
+        while(True):
+            try:
+                path = input("Please enter the statement file's path")
+                if not os.path.exists(path):
+                    print("Couldn't find the file")
+                else:
+                    fg.CSVStatementConverter(path)
+            except Exception as e:
+                print("An error occurred: "+e)
+
+def main():
+    m = Menu()
+    m.mainMenu()
+
+if __name__ == "__main__":
+    main()
