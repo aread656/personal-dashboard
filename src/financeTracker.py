@@ -23,9 +23,14 @@ class Finances:
         return self.transactions
     
     #-------------Adding Income/Expenses with CLI----------------#
-    def create_transaction(self, categories, is_income):
+    def create_transaction(self):
         #prompt the user to input transaction details
-        category = Transaction.transaction_category(self, categories) 
+        is_income = Transaction.transaction_type()
+        if is_income:
+            category = Transaction.transaction_category(self, self.income_categories) 
+        else:
+            category = Transaction.transaction_category(self,self.expense_categories)
+
         date = Transaction.transaction_date(self)
         amount = Transaction.transaction_amount(self)
         desc = Transaction.transaction_desc(self) 
