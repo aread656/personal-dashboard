@@ -42,7 +42,7 @@ def random_dates(start, end):
     delta = end - start
     return (start + timedelta(days = random.randint(0, delta.days))).strftime("%Y-%m-%d")
 
-def generate_student_income(n = 50):
+def generate_sample_income(n = 50):
     transactions = []
     start_date = datetime.now() - timedelta(days = 365)
     end_date = datetime.now()
@@ -79,7 +79,7 @@ def generate_student_income(n = 50):
         transactions.append(new_trans)
     return transactions
     
-def generate_student_expenses(n = 150):
+def generate_sample_expenses(n = 150):
     transactions = []
     start = datetime.now() - timedelta(days = 365)
     end = datetime.now()
