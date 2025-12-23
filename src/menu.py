@@ -38,8 +38,8 @@ class Menu:
     def viewTransactions(self):
         print("View Transactions Menu")
         while(True):
-            print("1. All Transactions\n2: All Income\n3. All Expenses\n4: Filter Transactions by Dates\n5: Main Menu")
-            option = self.getUserOption(5)
+            print("1. All Transactions\n2: All Income\n3. All Expenses\n4: Filter Transactions by Dates\n5: Find Transaction\n6: Main Menu")
+            option = self.getUserOption(6)
             match(option):
                 case 1:
                     self.f.listTransactions()
@@ -50,6 +50,8 @@ class Menu:
                 case 4:
                     print("Under construction")
                 case 5:
+                    print(self.f.findTransaction())
+                case 6:
                     return
 
     def statsMenu(self):
@@ -104,32 +106,46 @@ class Menu:
             print("1. Add New Items from Statement\n2. Add Transaction Manually\n3. Delete All Transactions" \
             "\n4. Delete a Single Transaction\n5. Edit Transaction\n6. List All Transactions\n" \
             "7. Generate Sample Transactions\n8. Save Changes\n9. Main Menu")
-            option = self.getUserOption(7)
+            option = self.getUserOption(9)
             match(option):
                 case 1:
+                    self.statementInput()
                     return
                 case 2:
-                    self.f.addTransactionCSV(self.f.create_transaction())
+                    self.f.create_transaction()
                     return
                 case 3:
                     self.f.clearTransactions()
                     return
                 case 4:
+                    try:
+                        id = self.f.findTransaction()
+                    except Exception:
+                        print("Error occurred"); return
                     self.f.deleteTransaction()
                     return
                 case 5:
-                    self.f.editTransaction()
+                    try:
+                        id = self.f.findTransaction()
+                    except Exception:
+                        print("Error occurred"); return
+                    self.f.editTransaction(id)
                     return
                 case 6:
+                    #working
                     self.f.listTransactions()
                     return
                 case 7:
-                    fg.generate_sample_income()
-                    fg.generate_sample_expenses()
+                    self.f.transactions.extend(fg.generate_sample_income())
+                    self.f.transactions.extend(fg.generate_sample_expenses())
+                    self.f.saveAllTransactions()
                     return
                 case 8:
-                    self.mainMenu()
+                    #working
+                    self.f.saveAllTransactions()
                     return
+                case 9:
+                    self.mainMenu()
         return
     def statementInput(self):
         while(True):
@@ -142,9 +158,6 @@ class Menu:
             except Exception as e:
                 print("An error occurred: "+e)
 
-def main():
+if __name__ == "__main__":
     m = Menu()
     m.mainMenu()
-
-if __name__ == "__main__":
-    main()
