@@ -2,6 +2,7 @@ from financeTracker import Finances
 import financeStatistics as fs
 import financeGeneration as fg
 import os
+from datetime import datetime as dt
 class Menu:
 
     def __init__(self):
@@ -69,6 +70,7 @@ class Menu:
                     self.miscStatsMenu()
                 case 4:
                     return
+                
     def dateStatsMenu(self):
         print("\nDates menu")
         print("1. Filter Records by Dates\n2. Income by Dates\n3. Expenses by Dates" \
@@ -76,7 +78,7 @@ class Menu:
         option = self.getUserOption(5)
         match(option):
             case 1:
-                print("Under construction")
+                print(self.fromMenuFilterDates())
             case 2:
                 fs.incomeByDates(self.f)
             case 3:
@@ -85,6 +87,15 @@ class Menu:
                 fs.netIncomeByDates(self.f)
             case 5:
                 return
+    def fromMenuFilterDates(self, start = None, end = None):
+        try:
+            start = input("Enter the start date: ")
+            start = dt.strptime(start, "%Y-%m-%d")
+            end = input("Enter the end date: ")
+            end = dt.strptime(end, "%Y-%m-%d")
+        except Exception:
+            print("Error occurred when inputting dates"); return
+        return fs.filterRecordsByDates(self.f, start, end) 
     def categoryStatsMenu(self):
         print("Category Menu")
         print("1. Most Common Categories\n2. Amounts by Category\n3. Stats Menu")
@@ -110,53 +121,45 @@ class Menu:
             match(option):
                 case 1:
                     self.statementInput()
-                    return
                 case 2:
                     self.f.create_transaction()
-                    return
                 case 3:
                     self.f.clearTransactions()
-                    return
                 case 4:
                     try:
                         id = self.f.findTransaction()
                     except Exception:
-                        print("Error occurred"); return
+                        print("Error occurred"); break
                     self.f.deleteTransaction()
-                    return
                 case 5:
                     try:
                         id = self.f.findTransaction()
                     except Exception:
-                        print("Error occurred"); return
+                        print("Error occurred"); break
                     self.f.editTransaction(id)
-                    return
                 case 6:
                     #working
                     self.f.listTransactions()
-                    return
                 case 7:
                     self.f.transactions.extend(fg.generate_sample_income())
                     self.f.transactions.extend(fg.generate_sample_expenses())
                     self.f.saveAllTransactions()
-                    return
                 case 8:
                     #working
                     self.f.saveAllTransactions()
-                    return
                 case 9:
                     self.mainMenu()
-        return
     def statementInput(self):
         while(True):
             try:
-                path = input("Please enter the statement file's path")
+                path = input("Please enter the statement file's path: ")
                 if not os.path.exists(path):
                     print("Couldn't find the file")
                 else:
                     fg.CSVStatementConverter(path)
-            except Exception as e:
-                print("An error occurred: "+e)
+                    break
+            except Exception:
+                print("An error occurred.")
 
 if __name__ == "__main__":
     m = Menu()
