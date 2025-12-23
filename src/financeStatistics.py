@@ -15,14 +15,13 @@ def printAllIncomesOrExpenses(fin, is_income: bool):
     for trans in transactions:
         print(str(trans))
 
-def filterRecordsByDates(transactions, start: datetime, end: datetime):
-    dataset = pd.DataFrame(
-        {"category": t.category, "date": t.date, 
-         "amount": t.amount, "desc": t.desc,
-         "is_income": t.is_income} for t in transactions
-        )
-    mask = (dataset["date"] >= start) & (dataset["date"] <= end)
-    return dataset.loc[mask]
+def filterRecordsByDates(fin, start:datetime, end:datetime):
+    filtered_records = pd.DataFrame(
+        {"id":t.id,"type":t.is_income,"date":t.date,"category":t.category,
+         "amount":t.amount,"desc":t.desc}
+    for t in fin.transactions)
+    mask = (filtered_records["date"] >= start) & (filtered_records["date"] <= end)
+    return filtered_records.loc[mask]
 
 def totalIncome(fin) -> float:
     return sum(t.amount for t in fin.getAllTransactions() if t.is_income and t.amount < 1000)
