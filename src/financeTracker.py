@@ -49,7 +49,6 @@ class Finances:
                 return None
         except Exception as e:
                 print(f"An error occurred: {e}")
-
     def addIncome(self):
         print("Adding income...")
         income = self.create_transaction(self.income_categories, True)
@@ -57,7 +56,6 @@ class Finances:
             self.transactions.append(income)
             self.addTransactionCSV(income)
             print(f"Income added! ID:{income.id}")
-
     def addExpense(self):
         print("Adding an expense...")
         expense = self.create_transaction(self.expense_categories, False)
@@ -79,11 +77,9 @@ class Finances:
             print(f"{'Income' if is_income else 'Expense'} added! ID: {new_trans.id}")
         except ValueError:
             print("Invalid date format. Please use YYYY-MM-DD")
-
     def quickAddIncome(self, date, amount, desc, category = "Misc"):
         #quick add for income, no prompt
         self.quickAdd(category, date, amount, desc, True)
-
     def quickAddExpense(self, date, amount, desc, category = "Misc"):
         #quick add for expense, no prompt
         self.quickAdd(category, date, amount, desc, False)
@@ -98,7 +94,6 @@ class Finances:
         print("\n---All transactions---\n")
         for t in self.transactions:
             print(t)
-
     def findTransaction(self)->Transaction:
         #find a transaction based on ID
          while(True):
@@ -112,15 +107,29 @@ class Finances:
                 print("An error occurred. Matching transaction not found"); return None
             
     #----------editing and deleting----------#
-    def editTransaction(self, trans_id, new_amount = None, new_desc = None):
+    def editTransaction(self, trans_id, new_amount = None, new_desc = None, new_date = None, new_cat = None, new_type = None):
         #edits transaction based on ID
+        attribute = input("Enter the attribute to edit (date, category, type, amount, or desc): ")
+        match(attribute):
+            case "date":
+                new_date = Transaction.transaction_date()
+            case "category":
+                new_cat = Transaction.transaction_category()
+            case "type":
+                new_type = Transaction.transaction_type()
+            case "amount":
+                new_amount = Transaction.transaction_amount()
+            case "desc":
+                new_desc = Transaction.transaction_desc()
+
         for t in self.transactions:
             if (t.id == trans_id):
                 print(f"\nFound transaction:\n{t}")
-                if new_amount is not None:
-                    t.amount = new_amount 
-                if new_desc is not None:
-                    t.desc = new_desc 
+                if new_amount is not None: t.amount = new_amount 
+                if new_date is not None: t.date = new_date
+                if new_cat is not None: t.category = new_cat
+                if new_type is not None: t.is_income = new_type
+                if new_desc is not None: t.desc = new_desc 
                 print(f"Edited transaction:\n {t}")
                 confirm = input("Confirm edit? (Y/N): ").strip().upper()
                 if(confirm == "Y"):
@@ -130,7 +139,6 @@ class Finances:
                     print("No edits made")
                 return
         print("No transaction found")
-
     def deleteTransaction(self, trans_id = None, trans_amount = None, trans_desc = None):
         #deletes a transaction based on ID
         for t in self.transactions:
@@ -166,7 +174,6 @@ class Finances:
                 transaction.amount,
                 transaction.desc
                 ])
-
     def loadTransactions(self):
         #load all transactions into self.transactions
         file_exists = os.path.isfile(self.filename) and os.path.getsize(self.filename) > 0
@@ -188,7 +195,6 @@ class Finances:
                     self.transactions.append(new_trans)
                 except Exception as e:
                     print(f"An error occurred: {e}")
-    
     def printAllTransactions(self):
         if not self.transactions:
             print("No transactions exist")
@@ -196,7 +202,6 @@ class Finances:
         print("---Transactions---")
         for trans in self.transactions:
             print(trans, end = "\n")
-
     def clearTransactions(self):
         if not self.transactions:
             print("No transactions exist")
@@ -208,7 +213,6 @@ class Finances:
             print("All transactions cleared")
         else:
             print("No transactions have been cleared.")
-
     def saveAllTransactions(self):
         #overwrites csv file with self.transactions
         with open(self.filename, mode = "w", newline = '', encoding = "utf-8") as f:
