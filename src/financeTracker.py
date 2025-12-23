@@ -5,7 +5,7 @@ from transaction import Transaction
 
 class Finances:
     #a class which will manage a collection of transactions
-    #the class will allow for adding, editing, and removing csv file records
+    #the class will allow for adding, editing, and removing records
 
     #a list of all income and expense categories:
     income_categories = ["Pay", "Gift", "Dividend", "Loans", "Misc"]
@@ -18,14 +18,14 @@ class Finances:
         self.transactions = []
         self.loadTransactions()
 
-    #-------------Getters for Finances() instance-----------------#
+    #-------------Getters for Finances() class-----------------#
     def getAllTransactions(self):
         return self.transactions
     
     #-------------Adding Income/Expenses with CLI----------------#
     def create_transaction(self):
         #prompt the user to input transaction details
-        is_income = Transaction.transaction_type()
+        is_income = Transaction.transaction_type(self)
         if is_income:
             category = Transaction.transaction_category(self, self.income_categories) 
         else:
@@ -99,10 +99,18 @@ class Finances:
         for t in self.transactions:
             print(t)
 
-    def findTransaction(self):
-        #find a transaction based on attributes
-        return
-
+    def findTransaction(self)->Transaction:
+        #find a transaction based on ID
+         while(True):
+            try:
+                selection = input("Enter the transaction's ID, enter \"L\" to list all transactions: ")
+                if (selection.strip().upper() == "L"):
+                    self.listTransactions(); return None
+                for t in self.transactions:
+                    if (t.id == selection): return t
+            except Exception:
+                print("An error occurred. Matching transaction not found"); return None
+            
     #----------editing and deleting----------#
     def editTransaction(self, trans_id, new_amount = None, new_desc = None):
         #edits transaction based on ID
