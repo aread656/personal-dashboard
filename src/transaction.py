@@ -19,7 +19,7 @@ class Transaction:
 
     def __str__(self):
         trans_str = "Income" if self.is_income == True else "Expense"
-        return f"{trans_str} | {self.date.strftime('%d/%m/%Y')} | {self.category} | {self.amount} | {self.desc}";
+        return f"{self.id} | {trans_str} | {self.date.strftime('%d/%m/%Y')} | {self.category} | {self.amount} | {self.desc}"
 
     def transaction_category(self, categories):
         for i, category in enumerate(categories):
@@ -65,15 +65,17 @@ class Transaction:
                     break
                 else:
                     print("Invalid. Please enter Y or N")
-            except Exception as e:
-                print("An error occurred: " + e)
+            except Exception:
+                print("An error occurred")
 
     def transaction_type(self):
         while True:
             try:
-                type_choice = input("Is this an expense or an income? (I/E)")
+                type_choice = input("Is this an expense or an income (I/E)? ")
                 if type_choice.strip().upper() == "I":
                     return True
-                return False
-            except Exception as e:
-                print("An error occurred: " + e)
+                elif type_choice.strip().upper() == "E":
+                    return False
+                print("Invalid input, enter \"I\" or \"E\"")
+            except Exception:
+                print("An error occurred, enter only \"I\" or \"E\"")
