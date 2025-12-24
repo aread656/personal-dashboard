@@ -49,7 +49,7 @@ class Menu:
                 case 3:
                     fs.printAllIncomesOrExpenses(self.f, False)
                 case 4:
-                    print("Under construction")
+                    print(self.fromMenuFilterDates())
                 case 5:
                     print(self.f.findTransaction())
                 case 6:
@@ -120,27 +120,33 @@ class Menu:
             option = self.getUserOption(9)
             match(option):
                 case 1:
+                    #not adding to csv
                     self.statementInput()
                 case 2:
+                    #also not ading to csv
                     self.f.create_transaction()
                 case 3:
+                    #working
                     self.f.clearTransactions()
                 case 4:
+                    #working
                     try:
-                        id = self.f.findTransaction()
+                        trans = self.f.findTransaction()
                     except Exception:
                         print("Error occurred"); break
-                    self.f.deleteTransaction()
+                    self.f.deleteTransaction(trans.id)
                 case 5:
+                    #working
                     try:
-                        id = self.f.findTransaction()
+                        trans = self.f.findTransaction()
                     except Exception:
                         print("Error occurred"); break
-                    self.f.editTransaction(id)
+                    self.f.editTransaction(trans.id)
                 case 6:
                     #working
                     self.f.listTransactions()
                 case 7:
+                    #working
                     self.f.transactions.extend(fg.generate_sample_income())
                     self.f.transactions.extend(fg.generate_sample_expenses())
                     self.f.saveAllTransactions()
@@ -156,7 +162,9 @@ class Menu:
                 if not os.path.exists(path):
                     print("Couldn't find the file")
                 else:
-                    fg.CSVStatementConverter(path)
+                    new_transactions = fg.CSVStatementConverter(path)
+                    self.f.transactions.extend(new_transactions)
+                    self.f.saveAllTransactions()
                     break
             except Exception:
                 print("An error occurred.")
