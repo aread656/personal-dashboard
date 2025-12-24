@@ -41,7 +41,7 @@ class Transaction:
         while True:
             date_str = input("Enter a date (YYYY-MM-DD): ")
             try:
-                return datetime.strptime(date_str, "%Y/%m/%d")
+                return datetime.strptime(date_str, "%Y-%m-%d")
             except ValueError:
                 print("Incorrect date format. Please use YYYY-MM-DD format")
 
