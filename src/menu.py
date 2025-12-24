@@ -1,6 +1,7 @@
 from financeTracker import Finances
 import financeStatistics as fs
 import financeGeneration as fg
+import personalFunctions as pf
 import os
 from datetime import datetime as dt
 class Menu:
@@ -109,7 +110,16 @@ class Menu:
                 return
     def miscStatsMenu(self):
         print("Misc menu")
-        return
+        while(True):
+            print("1. Custom remove rows function")
+            option = self.getUserOption(2)
+            match(option):
+                case 1:
+                    pf.removeUnwantedRows(self.f)
+                case 2:
+                    self.statsMenu()
+                case _:
+                    print("Unknown input")
 
     def modifyMenu(self):
         print("Modification Menu")
