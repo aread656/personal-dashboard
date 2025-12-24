@@ -125,7 +125,7 @@ def generate_sample_expenses(n = 150):
         transactions.append(new_trans)
     return transactions
 
-def CSVStatementConverter(filename, output = "financeRecords.csv"):
+def CSVStatementConverter(filename):
     output_rows = []
     with open(file = filename, mode = "r", encoding = "cp1252", newline = "") as f:
         reader = csv.DictReader(f)
@@ -167,16 +167,4 @@ def CSVStatementConverter(filename, output = "financeRecords.csv"):
                 is_income = line["is_income"]
             )
             output_rows.append(new_trans)
-    with open(output, mode = "w", encoding = "utf-8", newline = "") as f_out:
-        fieldnames = ["category", "date", "amount", "desc", "is_income"]
-        writer = csv.DictWriter(f_out, fieldnames = fieldnames)
-        writer.writeheader()
-        for trans in output_rows:
-            writer.writerow({
-                "category": trans.category,
-                "date": trans.date.strftime("%Y-%m-%d"),
-                "amount": trans.amount,
-                "desc": trans.desc,
-                "is_income": trans.is_income
-            })  
-        return output_rows
+    return output_rows
