@@ -100,45 +100,60 @@ class Finances:
             try:
                 selection = input("Enter the transaction's ID, enter \"L\" to list all transactions: ")
                 if (selection.strip().upper() == "L"):
-                    self.listTransactions(); return None
-                for t in self.transactions:
-                    if (t.id == selection): return t
+                    self.listTransactions()
+                else:
+                    for t in self.transactions:
+                        if (t.id == selection): return t
             except Exception:
                 print("An error occurred. Matching transaction not found"); return None
             
     #----------editing and deleting----------#
-    def editTransaction(self, trans_id, new_amount = None, new_desc = None, new_date = None, new_cat = None, new_type = None):
+    def editTransaction(self, trans_id):
         #edits transaction based on ID
+        trans = None
+        for t in self.transactions:
+            if (t.id == trans_id):
+                trans = t
+                print(f"\nFound transaction:\n{trans}")
+                break
+        if trans is None:
+            print(f"Transaction with id {trans_id} not found"); return
+        new_amount = new_desc = new_date = new_cat = new_type = None
+
         attribute = input("Enter the attribute to edit (date, category, type, amount, or desc): ")
         match(attribute):
             case "date":
-                new_date = Transaction.transaction_date()
+                new_date = Transaction.transaction_date(self)
             case "category":
-                new_cat = Transaction.transaction_category()
+                new_cat = Transaction.transaction_category(self)
             case "type":
-                new_type = Transaction.transaction_type()
+                new_type = Transaction.transaction_type(self)
             case "amount":
-                new_amount = Transaction.transaction_amount()
+                new_amount = Transaction.transaction_amount(self)
             case "desc":
-                new_desc = Transaction.transaction_desc()
+                new_desc = Transaction.transaction_desc(self)
+            case "_":
+                print("Invalid. Please try again"); return
 
-        for t in self.transactions:
-            if (t.id == trans_id):
-                print(f"\nFound transaction:\n{t}")
-                if new_amount is not None: t.amount = new_amount 
-                if new_date is not None: t.date = new_date
-                if new_cat is not None: t.category = new_cat
-                if new_type is not None: t.is_income = new_type
-                if new_desc is not None: t.desc = new_desc 
-                print(f"Edited transaction:\n {t}")
-                confirm = input("Confirm edit? (Y/N): ").strip().upper()
-                if(confirm == "Y"):
-                    self.saveAllTransactions()
-                    print("Edits made and saved")
-                else:
-                    print("No edits made")
-                return
-        print("No transaction found")
+        if new_amount is not None: t.amount = print(f"New amount: {new_amount}") 
+        if new_date is not None: t.date = print(f"New date: {new_date}") 
+        if new_cat is not None: t.category = print(f"New category: {new_cat}") 
+        if new_type is not None: t.is_income = print(f"New type: {new_type}") 
+        if new_desc is not None: t.desc = print(f"New desc: {new_desc}")  
+
+        confirm = input("Confirm edit? (Y/N): ").strip().upper()
+        if(confirm == "Y"):
+            if new_amount is not None: t.amount = new_amount 
+            if new_date is not None: t.date = new_date
+            if new_cat is not None: t.category = new_cat
+            if new_type is not None: t.is_income = new_type
+            if new_desc is not None: t.desc = new_desc 
+            self.saveAllTransactions()
+            print("Edits made and saved")
+        else:
+            print("No edits made")
+        
+
     def deleteTransaction(self, trans_id = None, trans_amount = None, trans_desc = None):
         #deletes a transaction based on ID
         for t in self.transactions:
