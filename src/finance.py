@@ -3,11 +3,8 @@ import csv
 import utils
 from transaction import Transaction
 from personalFunctions import removeUnwantedRows
+from datetime import datetime
 class Finance:
-
-    income_categories = ["Pay", "Gift", "Dividend", "Loans", "Misc"]
-    expense_categories = ["Bills", "Transport", "Groceries", "Clothing", "Charity", "Emergency", "Leisure", "Misc"]
-
     def __init__(self, filename = "financeRecords.csv"):
         self.transactions = []
         self.filename = filename
@@ -30,6 +27,9 @@ class Finance:
                     else:
                         line["Category"]=mapped_category
 
+                    dt = datetime.strptime(line["Date"],"%m/%d/%Y")
+                    line["Date"]=dt.strftime("%Y-%m-%d")
+
                     #remove unecessary rows
                     line.pop("Balance",None)
                     line.pop("Status",None)
@@ -43,10 +43,29 @@ class Finance:
                     )
                     output_rows.append(new_trans)
         return output_rows
-    def addTransaction(self):
-        return
-    def deleteTransaction(self):
-        return
+
+    def addTransaction(self,type,amount,category,date,desc):
+        #create a new transaction instance
+        #append to self.transactions
+        #in try-except
+        try:
+            new = Transaction(
+                amount = amount,
+                category = category,
+                date = date,
+                description = desc,
+                type = type
+            )
+            self.transactions.append(new)
+        except (ValueError,TypeError) as e:
+            print(f"Error when adding transaction: {e}")
+
+    def deleteTransaction(self,id) -> Transaction:
+        for i,t in enumerate(self.transactions):
+            if t.id == id:
+                return self.transactions.pop(i)
+        return None
+
     def listTransactions(self):
         if self.transactions:
             for t in self.transactions:
@@ -54,8 +73,41 @@ class Finance:
             return
         print("No transactions recorded")
         return
-    def editTransaction(self):
-        return
+
+    def editTransaction(self,id,attribute,new_value) -> bool:
+        #check through attributes
+        #try-except block to protect against errors
+        t = self.findTransaction(id)
+        if not t:
+            print(f"Transaction not found with {id}")
+            return False
+        try:
+            match(attribute):
+                case "type":
+                    t.type = new_value
+                case "amount":
+                    t.amount = new_value
+                case "category":
+                    t.category = new_value
+                case "date":
+                    t.date = new_value
+                case "description":
+                    t.description = new_value
+                case _:
+                    print(f"Invalid attribute: {attribute}")
+                    return False
+            print(f"Successfully edited transaction {id}")
+            return True
+        except(ValueError,TypeError) as e:
+            print(f"Failed to edit: {e}")
+            return False
+
+    def findTransaction(self,id):
+        for t in self.transactions:
+            if t.id == id:
+                return t
+        return None
+
     def saveToCSV(self):
         with open(file = self.filename, mode = "w", encoding = "cp1252",newline="") as f:
             writer = csv.writer(f)
@@ -63,7 +115,7 @@ class Finance:
             for t in self.transactions:
                 writer.writerow([
                     t.id,t.date,
-                    "Income" if t.type else "Expense",
+                    t.type,
                     t.category,t.amount,t.description
                 ])
     
