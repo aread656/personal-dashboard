@@ -3,6 +3,9 @@ import random
 from transaction import Transaction
 from finance import Finance
 
+INCOME_CATEGORIES = ["Pay", "Gift", "Dividend", "Loans", "Misc"]
+EXPENSE_CATEGORIES = ["Bills", "Transport", "Groceries", "Clothing", "Charity", "Emergency", "Leisure", "Misc"]
+
 CATEGORY_MAP = {
     ("Salary and pension", "Salary / wages"): "Pay",
     ("Salary and pension","Student loan"):"Loans",
