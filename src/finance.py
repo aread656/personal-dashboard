@@ -1,6 +1,6 @@
 import os
 import csv
-import utils
+import constants
 from transaction import Transaction
 from personalFunctions import removeUnwantedRows
 from datetime import datetime
@@ -19,9 +19,9 @@ class Finance:
                     line["is_income"] = float(amt_str) > 0
                     line["Amount"] = abs(float(amt_str))
 
-                    #use utils CATEGORY_MAP to map to custom categories
+                    #use constants.py CATEGORY_MAP to map to custom categories
                     category_key = (line.get("Category"),line.get("Subcategory"))
-                    mapped_category = utils.CATEGORY_MAP.get(category_key)
+                    mapped_category = constants.CATEGORY_MAP.get(category_key)
                     if not mapped_category:
                         line["Category"]="Misc"
                     else:
@@ -37,24 +37,24 @@ class Finance:
                     line.pop("Subcategory",None)
 
                     new_trans = Transaction(
+                        type = line["is_income"],
                         amount = line["Amount"], category = line["Category"],
-                        date = line["Date"], description = line["Text"],
-                        type = line["is_income"]
+                        date = line["Date"], description = line["Text"]
                     )
                     output_rows.append(new_trans)
         return output_rows
 
-    def addTransaction(self,type,amount,category,date,desc):
+    def addTransaction(self,type,amount,category,date,description):
         #create a new transaction instance
         #append to self.transactions
         #in try-except
         try:
             new = Transaction(
+                type = type,
                 amount = amount,
                 category = category,
                 date = date,
-                description = desc,
-                type = type
+                description = description            
             )
             self.transactions.append(new)
         except (ValueError,TypeError) as e:
@@ -66,6 +66,9 @@ class Finance:
                 return self.transactions.pop(i)
         return None
 
+    def getAllTransactions(self):
+        return self.transactions
+
     def listTransactions(self):
         if self.transactions:
             for t in self.transactions:
@@ -74,6 +77,10 @@ class Finance:
         print("No transactions recorded")
         return
 
+    def clearAllTransactions(self):
+        for i in enumerate(self.transactions):
+            self.transactions.pop(i)
+
     def editTransaction(self,id,attribute,new_value) -> bool:
         #check through attributes
         #try-except block to protect against errors
@@ -81,21 +88,15 @@ class Finance:
         if not t:
             print(f"Transaction not found with {id}")
             return False
-        try:
-            match(attribute):
-                case "type":
-                    t.type = new_value
-                case "amount":
-                    t.amount = new_value
-                case "category":
-                    t.category = new_value
-                case "date":
-                    t.date = new_value
-                case "description":
-                    t.description = new_value
-                case _:
-                    print(f"Invalid attribute: {attribute}")
-                    return False
+        try:    
+            if (attribute == "type"): t.type = new_value
+            elif (attribute == "amount"): t.amount = new_value
+            elif (attribute == "category"): t.category = new_value
+            elif (attribute == "date"): t.date = new_value
+            elif (attribute == "description"): t.description = new_value
+            else:
+                print(f"Invalid attribute: {attribute}")
+                return False
             print(f"Successfully edited transaction {id}")
             return True
         except(ValueError,TypeError) as e:
