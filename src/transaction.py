@@ -1,9 +1,9 @@
 import uuid
 from datetime import datetime
-from utils import INCOME_CATEGORIES,EXPENSE_CATEGORIES
+from constants import INCOME_CATEGORIES,EXPENSE_CATEGORIES
 class Transaction:
     #initialise a transaction
-    def __init__(self,amount,category,date,description,type):
+    def __init__(self,type,amount,category,date,description):
         self.id:str = str(uuid.uuid4().hex[:8]) 
         self.type = type
         self.amount:float = amount
@@ -58,7 +58,7 @@ class Transaction:
         return self._date
     
     @date.setter
-    def date(self,date:str | datetime.date | datetime): #set a new date   
+    def date(self,date:str | datetime): #set a new date   
         if isinstance(date, str):
             try:
                 parsed = datetime.strptime(date, "%Y-%m-%d")
