@@ -60,10 +60,12 @@ class Finance:
         except (ValueError,TypeError) as e:
             print(f"Error when adding transaction: {e}")
 
-    def deleteTransaction(self,id) -> Transaction:
+    def deleteTransaction(self,id) -> Transaction | None:
+        if (id.lower() == "q" and isinstance(id,str)): return None
         for i,t in enumerate(self.transactions):
             if t.id == id:
                 return self.transactions.pop(i)
+        print(f"Transaction of id {id} not found")
         return None
 
     def getAllTransactions(self):
@@ -78,8 +80,7 @@ class Finance:
         return
 
     def clearAllTransactions(self):
-        for i in enumerate(self.transactions):
-            self.transactions.pop(i)
+        self.transactions.clear()
 
     def editTransaction(self,id,attribute,new_value) -> bool:
         #check through attributes
@@ -104,9 +105,11 @@ class Finance:
             return False
 
     def findTransaction(self,id):
+        if (id.lower() == "q" and isinstance(id,str)): return None
         for t in self.transactions:
             if t.id == id:
                 return t
+        print(f"Transaction with id {id} not found")
         return None
 
     def saveToCSV(self):

@@ -45,7 +45,6 @@ class Transaction:
     @category.setter
     def category(self,category:str): #set a new category
         category = str(category).strip().capitalize()
-        from finance import Finance
         allowed = INCOME_CATEGORIES if self._type else EXPENSE_CATEGORIES
         if category not in allowed:
             raise ValueError("Invalid category")

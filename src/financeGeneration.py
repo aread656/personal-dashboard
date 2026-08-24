@@ -1,0 +1,170 @@
+from datetime import datetime, timedelta
+import csv
+import random
+from transaction import Transaction
+from constants import INCOME_CATEGORIES,EXPENSE_CATEGORIES
+
+CATEGORY_MAP = {("Salary and pension", "Salary / wages"): "Pay",
+        ("Other income", "Own account transfer"): "Transfer",
+        ("Other income", "Other transfers"): "Gift",
+        ("Pension, savings and investment","Savings"):"Transfer",
+        
+        ("Transport", "Fuel"): "Fuel",
+        ("Transport", "Bus / train"): "Bills",
+        ("Transport", "Plane"): "Leisure",
+        ("Transport", "Parking"): "Bills",
+
+        ("Household goods", "Supermarket"): "Groceries",
+        ("Household goods", "Other"): "Groceries",
+        ("Household goods", None): "Groceries",
+
+        ("Recreation and leisure", "Caf� / restaurant"): "Leisure",
+        ("Recreation and leisure", "Bar / nightclub"): "Leisure",
+        ("Recreation and leisure", "Cinema / concert / theatre"): "Leisure",
+        ("Recreation and leisure", "Holiday"): "Leisure",
+        ("Recreation and leisure", "Games / toys"): "Leisure",
+
+        ("Other expenses", "Donations"): "Charity",
+        ("Other expenses", "Cash withdrawals"): "Misc",
+        ("Other expenses", "Own account transfer"): "Misc",
+        ("Other expenses","Other"): "Misc",
+
+        ("Clothing, shoes and personal care", "Clothing / shoes"): "Clothing",
+        ("Clothing, shoes and personal care", "Personal care"): "Clothing",
+
+        ("Housing", "Maintenance"): "Bills",
+        ("Housing", "Other"): "Bills",
+
+        ("Uncategorised", "Uncategorised"): "Misc",
+    }
+
+def random_dates(start, end):
+    delta = end - start
+    return (start + timedelta(days = random.randint(0, delta.days))).strftime("%Y-%m-%d")
+
+def generate_sample_income(n = 50):
+    transactions = []
+    start_date = datetime.now() - timedelta(days = 365)
+    end_date = datetime.now()
+    for i in range(n):
+        category = random.choices(
+            population = INCOME_CATEGORIES,
+            weights = [50, 10, 8, 2, 20, 10],
+            k = 1
+        )[0]
+        match category:
+            case "Pay":
+                amount = round(random.uniform(80, 300), 2)
+                description = "Part-time job"
+            case "Gift":
+                amount = round(random.uniform(20, 40), 2)
+                description = "Gifts from family/friends"
+            case "Dividend":
+                amount = round(random.uniform(0.1, 5), 2)
+                description = "Stock dividends"
+            case "Loans":
+                amount = round(random.uniform(1200, 2000), 2)
+                description = "Student Loans"
+            case "Misc":
+                amount = round(random.uniform(2, 20), 2)
+                description = "Miscellaneous"
+        date = random_dates(start_date, end_date)
+        new_trans = Transaction(
+            type = True,
+            amount = amount,
+            category = category,
+            date = date,
+            description = description,
+        )
+        transactions.append(new_trans)
+    return transactions
+    
+def generate_sample_expenses(n = 150):
+    transactions = []
+    start = datetime.now() - timedelta(days = 365)
+    end = datetime.now()
+    for i in range(n):
+        category = random.choices(
+            population = EXPENSE_CATEGORIES,
+            weights = [5, 10, 30, 5, 10, 2, 15, 10, 10],
+            k = 1
+        )[0]
+        match category:
+            case "Bills":
+                amount = round(random.uniform(420, 450), 2)
+                description = "Monthly rent and bills"
+            case "Fuel":
+                amount = round(random.uniform(30, 70), 2)
+                description = "Car fuel"
+            case "Groceries":
+                amount = round(random.uniform(15, 40), 2)
+                description = "Groceries"
+            case "Clothing":
+                amount = round(random.uniform(15, 40), 2)
+                description = "Clothing"
+            case "Charity":
+                amount = round(random.uniform(15, 30), 2)
+                description = "Foodbank/charity donation"
+            case "Emergency":
+                amount = round(random.uniform(75, 300), 2)
+                description = "Emergency repairs/purchases"
+            case "Leisure":
+                amount = round(random.uniform(10, 25), 2)
+                description = "Entertainment and Leisure"
+            case "Misc":
+                amount = round(random.uniform(5, 20), 2)
+                description = "Other miscellaneous"
+        date = random_dates(start, end)
+        new_trans = Transaction(
+            type = False,
+            amount = amount,
+            category = category,
+            date = date,
+            description = description
+        )
+        transactions.append(new_trans)
+    return transactions
+
+def CSVStatementConverter(filename):
+    output_rows = []
+    with open(file = filename, mode = "r", encoding = "cp1252", newline = "") as f:
+        reader = csv.DictReader(f)
+        for line in reader:
+            #remove unecessary categories
+            line.pop("Reconciled", None)
+            line.pop("Status", None)
+            line.pop("Balance", None)
+
+            #create is_income attribute for each row
+            amount_str = line["Amount"].replace(",", "").strip()
+            line["is_income"] = float(amount_str) > 0
+            line["Amount"] = abs(float(amount_str))
+
+            #adjust categories to match above categories
+            category_key = (line.get("Category"), line.get("Subcategory"))
+            mapped = CATEGORY_MAP.get(category_key)
+
+            if not mapped:
+                line["Category"] = "Misc"
+            else:
+                line["Category"] = mapped
+            
+            line.pop("Subcategory", None)
+
+            #adjust dates into YYYY/MM/DD format
+            dt = datetime.strptime(line["Date"], "%m/%d/%Y")
+            line["Date"] = dt.strftime("%Y-%m-%d")
+
+            #some descriptions have ))))), this removes them
+            line["Text"] = line["Text"].replace(")", "").strip()
+
+            #create transaction objects for each line
+            new_trans = Transaction(
+                type = line["is_income"],
+                amount = line["Amount"], 
+                category = line["Category"], 
+                date = line["Date"], 
+                description = line["Text"]
+            )
+            output_rows.append(new_trans)
+    return output_rows
