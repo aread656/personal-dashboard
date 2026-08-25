@@ -1,8 +1,8 @@
 import os
 import csv
-import constants
-from transaction import Transaction
-from personalFunctions import removeUnwantedRows
+from . import constants
+from .transaction import Transaction
+from .personalFunctions import removeUnwantedRows
 from datetime import datetime
 class Finance:
     def __init__(self, filename = "financeRecords.csv"):
