@@ -1,7 +1,6 @@
 import os
 from datetime import datetime as dt
-from finance import Finance
-from transaction import Transaction
+from .finance import Finance
 import financeStatistics as fs
 import financeGeneration as fg
 import personalFunctions as pf
