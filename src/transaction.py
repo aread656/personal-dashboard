@@ -1,6 +1,6 @@
 import uuid
 from datetime import datetime
-from constants import INCOME_CATEGORIES,EXPENSE_CATEGORIES
+from .constants import INCOME_CATEGORIES,EXPENSE_CATEGORIES
 class Transaction:
     #initialise a transaction
     def __init__(self,type,amount,category,date,description):
@@ -22,6 +22,8 @@ class Transaction:
         return self._type
     @type.setter
     def type(self,is_income:bool): #set the new type, True for income & False for expense
+        if not isinstance(is_income,bool):
+            raise TypeError("Type must be a boolean")
         self._type = bool(is_income)
 
     #-----------Amount----------
@@ -34,6 +36,8 @@ class Transaction:
         try:
             #enforce that amount is a float
             self._amount = abs(float(amount))
+        except TypeError:
+            raise TypeError("Amount must be a valid number")
         except ValueError:
             raise ValueError("Amount must be a valid number")
 
@@ -57,10 +61,12 @@ class Transaction:
         return self._date
     
     @date.setter
-    def date(self,date:str | datetime): #set a new date   
+    def date(self,date:str | datetime): #set a new date
         if isinstance(date, str):
             try:
                 parsed = datetime.strptime(date, "%Y-%m-%d")
+                if (parsed > datetime.today()):
+                    raise ValueError("Date must not be in the future")
                 self._date = parsed.strftime("%Y-%m-%d")
             except ValueError:
                 raise ValueError("Incorrect date string format, expected YYYY-MM-DD")
@@ -76,4 +82,6 @@ class Transaction:
     
     @description.setter
     def description(self,desc:str): #set a new description
+        if not isinstance(desc,str):
+            raise TypeError("Description must be of type string")
         self._description = str(desc).strip()
