@@ -2,41 +2,7 @@ from datetime import datetime, timedelta
 import csv
 import random
 from .transaction import Transaction
-from .constants import INCOME_CATEGORIES,EXPENSE_CATEGORIES
-
-CATEGORY_MAP = {("Salary and pension", "Salary / wages"): "Pay",
-        ("Other income", "Own account transfer"): "Transfer",
-        ("Other income", "Other transfers"): "Gift",
-        ("Pension, savings and investment","Savings"):"Transfer",
-        
-        ("Transport", "Fuel"): "Fuel",
-        ("Transport", "Bus / train"): "Bills",
-        ("Transport", "Plane"): "Leisure",
-        ("Transport", "Parking"): "Bills",
-
-        ("Household goods", "Supermarket"): "Groceries",
-        ("Household goods", "Other"): "Groceries",
-        ("Household goods", None): "Groceries",
-
-        ("Recreation and leisure", "Caf� / restaurant"): "Leisure",
-        ("Recreation and leisure", "Bar / nightclub"): "Leisure",
-        ("Recreation and leisure", "Cinema / concert / theatre"): "Leisure",
-        ("Recreation and leisure", "Holiday"): "Leisure",
-        ("Recreation and leisure", "Games / toys"): "Leisure",
-
-        ("Other expenses", "Donations"): "Charity",
-        ("Other expenses", "Cash withdrawals"): "Misc",
-        ("Other expenses", "Own account transfer"): "Misc",
-        ("Other expenses","Other"): "Misc",
-
-        ("Clothing, shoes and personal care", "Clothing / shoes"): "Clothing",
-        ("Clothing, shoes and personal care", "Personal care"): "Clothing",
-
-        ("Housing", "Maintenance"): "Bills",
-        ("Housing", "Other"): "Bills",
-
-        ("Uncategorised", "Uncategorised"): "Misc",
-    }
+from .constants import INCOME_CATEGORIES,EXPENSE_CATEGORIES,CATEGORY_MAP
 
 def random_dates(start, end):
     delta = end - start
