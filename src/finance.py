@@ -71,7 +71,7 @@ class Finance:
             return None
 
     def deleteTransaction(self,id) -> Transaction | None:
-        if (id is None) or (id.lower() == "q" and isinstance(id,str)): return None
+        if (id is None) or (not isinstance(id,str)) or (id.lower() == "q"): return None
         for i,t in enumerate(self.transactions):
             if t.id == id:
                 return self.transactions.pop(i)
@@ -115,7 +115,7 @@ class Finance:
             return False
 
     def findTransaction(self,id):
-        if (id.lower() == "q" and isinstance(id,str)): return None
+        if (id is None) or (not isinstance(id,str)) or (id.lower() == "q"): return None
         for t in self.transactions:
             if t.id == id:
                 return t
