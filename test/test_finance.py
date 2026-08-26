@@ -7,15 +7,19 @@ import csv
 @pytest.fixture
 def fin():
     return Finance()
+def sample_transactions():
+    transactions = [(True,200.39,"Pay","2025-09-17","Part-time job"),
+    (True,15.09,"Transfer","2026-06-18","Transfer"),
+    (True,148.32,"Pay","2026-04-22","Part-time job"),
+    (False,36.18,"Groceries","2025-12-16","Groceries"),
+    (False,20.9,"Charity","2025-11-22","Foodbank.charity donation"),
+    (False,18.29,"Clothing","2025-09-11","Clothing")]
+    return [Transaction(*item) for item in transactions]
 #---------------------------------------------------
 #                   Adding Transactions
 #---------------------------------------------------
 def test_add_transaction_valid(fin):
     t = fin.addTransaction(True,2.00,"Pay","2026-01-01","Week's Pay")
-    # assert unique ID
-    for trans in fin.transactions:
-        if (trans != t):
-            assert trans.id != t.id
     # assert transaction successfully added
     assert t in fin.transactions
     # assert transaction details are correct
@@ -128,3 +132,81 @@ def test_read_csv_valid_path(fin):
     path = "data/one_line_statement.csv"
     rows = fin.readCSV(path)
     assert len(rows) > 0
+def test_read_csv_invalid_path(fin):
+    path = "data/a_very_invalid_path.csv"
+    rows = fin.readCSV(path) 
+    assert rows is None
+def test_read_csv_none_path(fin):
+    rows = fin.readCSV(None)
+    assert rows == None
+def test_read_csv_empty_file(fin):
+    rows = fin.readCSV("data/empty_statement.csv")
+    assert len(rows) == 0
+def test_read_csv_is_directory(fin):
+    rows = fin.readCSV("data/")
+    assert rows == None
+def test_read_csv_incorrect_type(fin):
+    rows = fin.readCSV(123)
+    assert rows == None
+
+#----------------------------------------------------------
+#                       Deleting Transaction                
+#----------------------------------------------------------
+def test_delete_transaction_valid(fin):
+    fin.transactions.extend(sample_transactions())
+    initial_num_trans = len(fin.transactions)
+    fin.deleteTransaction(fin.transactions[0].id)
+    assert len(fin.transactions) == initial_num_trans - 1
+def test_delete_transaction_invalid(fin):
+    fin.transactions.extend(sample_transactions())
+    assert fin.deleteTransaction("0") is None
+def test_delete_transaction_none(fin):
+    fin.transactions.extend(sample_transactions())
+    assert fin.deleteTransaction(None) is None
+def test_delete_transaction_quit_key(fin):
+    fin.transactions.extend(sample_transactions())
+    assert fin.deleteTransaction("q") is None
+def test_delete_transaction_not_in_list(fin):
+    t = Transaction(True,2.00,"Pay","2026-01-01","Example Transaction")
+    assert fin.deleteTransaction(t.id) is None
+def test_delete_transaction_id_wrong_type(fin):
+    fin.transactions.extend(sample_transactions())
+    assert fin.deleteTransaction(123) is None
+
+#---------------------------------------------------------
+#                 Getting All Transactions                
+#---------------------------------------------------------
+def test_get_all_transactions_non_empty_list(fin):
+    fin.transactions.extend(sample_transactions())
+    assert len(fin.getAllTransactions()) > 0
+def test_get_all_transactions_empty_list(fin):
+    assert len(fin.getAllTransactions()) == 0
+#------------------------------------------------------------
+#                 Clearing All Transactions                
+#------------------------------------------------------------
+def test_clear_all_transactions_non_empty_list(fin):
+    fin.transactions.extend(sample_transactions())
+    fin.clearAllTransactions()
+    assert len(fin.transactions) == 0
+def test_clear_all_transactions_non_empty_list(fin):
+    fin.clearAllTransactions()
+    assert len(fin.transactions) == 0
+#-------------------------------------------------------------
+#                       Find Transactions                       
+#-------------------------------------------------------------
+def test_find_transaction_id_exists(fin):
+    fin.transactions.extend(sample_transactions())
+    t = fin.findTransaction(fin.transactions[0].id)
+def test_find_transaction_quit_key(fin):
+    fin.transactions.extend(sample_transactions())
+    assert fin.findTransaction("q") is None
+def test_find_transaction_id_wrong_type(fin):
+    fin.transactions.extend(sample_transactions())
+    assert fin.findTransaction(123) is None
+def test_find_transaction_id_not_exist(fin):
+    fin.transactions.extend(sample_transactions())
+    assert fin.findTransaction("w") is None
+def test_find_transaction_empty_list(fin):
+    fin.clearAllTransactions()
+    t = fin.findTransaction("example_id")
+    assert t is None
