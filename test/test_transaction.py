@@ -14,6 +14,17 @@ def test_transaction_valid_init():
     assert t.category == "Pay"
     assert t.date == "2026-01-01"
     assert t.description == "Week's Pay"
+@pytest.mark.parametrize("bad_args", [
+    (),                                           # 0 arguments (Too few)
+    (True,),                                      # 1 argument  (Too few) — Note trailing comma
+    (True, 2.00),                                 # 2 arguments (Too few)
+    (True, 2.00, "Pay"),                          # 3 arguments (Too few)
+    (True, 2.00, "Pay", "2026-01-01"),            # 4 arguments (Too few)
+    (True, 2.00, "Pay", "2026-01-01", "Pay", 999) # 6 arguments (Too many)
+])
+def test_transaction_incorrect_arg_count(bad_args):
+    with pytest.raises(TypeError):
+        Transaction(*bad_args)
 
 #----------------IDs----------------------
 def test_unique_ids():
