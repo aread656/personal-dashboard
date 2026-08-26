@@ -4,93 +4,104 @@ import pandas as pd
 from matplotlib import pyplot as plt
 from .finance import Finance
 
-"""statistics to be made:
-    net income
-    most common categories
-    average income on a weekly/monthly basis"""
+def transactions_into_dataframe(fin: Finance) -> pd.DataFrame:
+    transactions = fin.getAllTransactions()
+    if not transactions:
+        return pd.DataFrame(columns=["date","amount","category","type"])
+    df = pd.DataFrame([
+        {"date":trans.date,
+        "amount":trans.amount,
+        "category":trans.category,
+        "type":trans.type}
+        for trans in transactions
+    ])
+    df["date"] = pd.to_datetime(df["date"])
+    df["month"] = df["date"].dt.month
+    df["month_name"] = df["date"].dt.strftime("%b")
+    return df
 
-def allIncomesOrExpenses(fin: Finance, is_income: bool):
-    return [trans for trans in fin.getAllTransactions() if trans.type == is_income]
-def printAllIncomesOrExpenses(fin, is_income: bool):
-    transactions = allIncomesOrExpenses(fin, is_income)
-    for trans in transactions:
-        print(str(trans))
+#----------------------------------------------------------
+#               Record Listing & Filtering                 
+#----------------------------------------------------------
+def all_incomes_or_expenses(fin,is_income:bool):
+    return [t for t in fin.getAllTransactions() if t.type == is_income]
 
-def filterRecordsByDates(fin, start:datetime, end:datetime):
-    filtered_records = pd.DataFrame(
-        {"id":t.id,"type":t.is_income,"date":t.date,"category":t.category,
-         "amount":t.amount,"desc":t.desc}
-    for t in fin.transactions)
-    mask = (filtered_records["date"] >= start) & (filtered_records["date"] <= end)
-    return filtered_records.loc[mask]
+def filter_records_by_dates(fin:Finance,start:datetime,end:datetime,printing=False):
+    filtered_records = [
+        t for t in fin.getAllTransactions()
+        if start <= datetime.strptime(t.date,"%Y-%m-%d") <= end
+    ]
+    if printing:
+        for t in filtered_records: print(t)
+    return filtered_records
 
-def totalIncome(fin) -> float:
-    return sum(t.amount for t in fin.getAllTransactions() if t.is_income and t.amount < 1000)
-def totalExpenses(fin) -> float:
-    return sum(t.amount for t in fin.getAllTransactions() if not t.is_income and t.amount < 1000)
-def netIncome(fin) -> float:
-    return totalIncome(fin) - totalExpenses(fin)
+#-------------------------------------------------
+#                Totals & Net Income            
+#--------------------------------------------------
+def total_income(fin:Finance):
+    return sum(t.amount for t in fin.getAllTransactions() if t.type == True)
 
-def datesDataset(fin, income_true_false: bool):
-    filtered_dataset = pd.DataFrame(
-        {"date": trans.date,
-         "amount": trans.amount}
-        for trans in fin.getAllTransactions() if trans.is_income == income_true_false)
-    filtered_dataset["month"] = filtered_dataset["date"].dt.month
-    filtered_dataset["month_name"] = filtered_dataset["date"].dt.strftime("%m")
-    return filtered_dataset
-def plotIncomeOrExpensesByDates(monthly_sums):
-    sns.barplot(data = monthly_sums, x = "month_name", y = "amount",
-                order = monthly_sums["month_name"])
+def total_expenses(fin:Finance):
+    return sum(t.amount for t in fin.getAllTransactions() if t.type == False)
+
+def netIncome(fin):
+    return total_income(fin) - total_expenses(fin)
+
+#----------------------------------------------------
+#                   Charts & Graphs                 
+#----------------------------------------------------
+def monthly_bar_chart(df:pd.DataFrame, y_col, title):
+    plt.figure(figsize=(8,5))
+    plt.title(title)
+    sns.barplot(data=df,x="month_name",y=y_col)
     plt.xlabel("Month")
     plt.ylabel("Amount")
     plt.show()
-def incomeByDates(fin):
-    income_dates_dataset = datesDataset(fin, True)
-    monthly_sums = income_dates_dataset.groupby(["month", "month_name"])["amount"].sum().reset_index().sort_values("month")
-    plt.title("Income by month")
-    plotIncomeOrExpensesByDates(monthly_sums)
-def expensesByDates(fin):
-    expenses_dates_dataset = datesDataset(fin, False)
-    monthly_sums = expenses_dates_dataset.groupby(["month", "month_name"])["amount"].sum().reset_index().sort_values("month")
-    plt.title("Expenses by month")
-    plotIncomeOrExpensesByDates(monthly_sums)
-def netIncomeByDates(fin):
-    income_dataset = datesDataset(fin, True)
-    expenses_dataset = datesDataset(fin, False)
-    #create a net dataset from each dataset's sums
-    income_sums = income_dataset.groupby(["month", "month_name"])["amount"].sum().reset_index().sort_values("month")
-    expenses_sums = expenses_dataset.groupby(["month", "month_name"])["amount"].sum().reset_index().sort_values("month")
-    net_sums = pd.merge(income_sums, expenses_sums, on = ["month", "month_name"], how = "outer")
-    net_sums["net"] = net_sums["amount_x"] - net_sums["amount_y"]
-    plt.title("Net income by month")
-    sns.barplot(data = net_sums, x = "month_name", y = "net")
-    plt.xlabel("month")
-    plt.ylabel("net amount")
+
+def income_by_dates(fin):
+    df = transactions_into_dataframe(fin)
+    income_records = df[df["type"]==True]
+    monthly = income_records.groupby(["month_name","month"])["amount"].sum().reset_index()
+    monthly_bar_chart(monthly,"amount","Income by month")
+
+def expenses_by_dates(fin):
+    df = transactions_into_dataframe(fin)
+    expense_records = df[df["type"]==False]
+    monthly = expense_records.groupby(["month_name","month"])["amount"].sum().reset_index()
+    monthly_bar_chart(monthly,"amount","Expenses by month")
+
+def net_income_by_dates(fin):
+    df = transactions_into_dataframe(fin)
+
+    income_records = df[df["type"]==True].groupby(["month_name","month"])["amount"].sum().reset_index()
+    expense_records = df[df["type"]==False].groupby(["month_name","month"])["amount"].sum().reset_index()
+    net_income = pd.merge(left=income_records,right=expense_records,how="outer",on=["month_name","month"]).fillna(0)
+    #net_income now a merged dataframe of both previous frames joined together
+    net_income["net"] = net_income["amount_x"] - net_income["amount_y"]
+    net_income = net_income.sort_values("month")
+
+    monthly_bar_chart(net_income,"net","Net income by month")
+
+def most_common_categories(fin):
+    df = transactions_into_dataframe(fin)
+    category_counts = df["category"].value_counts().reset_index()
+    category_counts.columns = ["category","count"]
+
+    plt.figure(figsize=(8,5))
+    plt.title("Most common categories")
+    sns.barplot(category_counts,x="category",y="count")
+    plt.xlabel("Category")
+    plt.ylabel("Frequency")
     plt.show()
 
-def mostCommonCategories(fin):
-    dataset = fin.getAllTransactions()
-    #create a count of transaction categories
-    filtered_dataset = pd.DataFrame(
-        {"category": trans.category} for trans in dataset)
-    category_counts = filtered_dataset["category"].value_counts().reset_index()
-    plt.figure(figsize = (8, 5))
-    plt.title("Most common categories")
-    sns.barplot(data = category_counts, x = "category", y = "count")
-    plt.xlabel("Category")
-    plt.ylabel("Number of occurrences")
-    plt.show()
-def amountsByCategory(fin):
-    dataset = fin.getAllTransactions()
-    filtered_dataset = pd.DataFrame(
-        {"category": trans.category,
-         "amount": trans.amount}
-         for trans in dataset)
-    category_sums = filtered_dataset.groupby(["category"])["amount"].sum().reset_index()
-    plt.figure(figsize = (8, 5))
+def amount_by_category(fin):
+    df = transactions_into_dataframe(fin)
+
+    category_sums = df.groupby("category")["amount"].sum().reset_index()
+
+    plt.figure(figsize=(8,5))
     plt.title("Amounts by category")
-    sns.barplot(data = category_sums, x = "category", y = "amount")
+    sns.barplot(category_sums,x="category",y="amount")
     plt.xlabel("Category")
     plt.ylabel("Amount")
     plt.show()
