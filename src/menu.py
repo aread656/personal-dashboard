@@ -1,9 +1,9 @@
 import os
 from datetime import datetime as dt
 from .finance import Finance
-import financeStatistics as fs
-import financeGeneration as fg
-import personalFunctions as pf
+import src.financeStatistics as fs
+import src.financeGeneration as fg
+import src.personalFunctions as pf
 
 
 class Menu:

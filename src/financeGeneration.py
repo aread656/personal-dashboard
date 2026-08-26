@@ -1,8 +1,8 @@
 from datetime import datetime, timedelta
 import csv
 import random
-from transaction import Transaction
-from constants import INCOME_CATEGORIES,EXPENSE_CATEGORIES
+from .transaction import Transaction
+from .constants import INCOME_CATEGORIES,EXPENSE_CATEGORIES
 
 CATEGORY_MAP = {("Salary and pension", "Salary / wages"): "Pay",
         ("Other income", "Own account transfer"): "Transfer",
@@ -65,6 +65,9 @@ def generate_sample_income(n = 50):
             case "Loans":
                 amount = round(random.uniform(1200, 2000), 2)
                 description = "Student Loans"
+            case "Transfer":
+                amount = round(random.uniform(5, 50), 2)
+                description = "Transfer"
             case "Misc":
                 amount = round(random.uniform(2, 20), 2)
                 description = "Miscellaneous"
@@ -111,6 +114,9 @@ def generate_sample_expenses(n = 150):
             case "Leisure":
                 amount = round(random.uniform(10, 25), 2)
                 description = "Entertainment and Leisure"
+            case "Transfer":
+                amount = round(random.uniform(5, 50), 2)
+                description = "Transfer"
             case "Misc":
                 amount = round(random.uniform(5, 20), 2)
                 description = "Other miscellaneous"

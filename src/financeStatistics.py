@@ -2,7 +2,7 @@ from datetime import datetime
 import seaborn as sns
 import pandas as pd
 from matplotlib import pyplot as plt
-from finance import Finance
+from .finance import Finance
 
 """statistics to be made:
     net income
