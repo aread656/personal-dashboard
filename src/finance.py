@@ -57,8 +57,10 @@ class Finance:
                 description = description            
             )
             self.transactions.append(new)
+            return new
         except (ValueError,TypeError) as e:
             print(f"Error when adding transaction: {e}")
+            return None
 
     def deleteTransaction(self,id) -> Transaction | None:
         if (id.lower() == "q" and isinstance(id,str)): return None
