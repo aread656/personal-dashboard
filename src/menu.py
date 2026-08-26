@@ -10,6 +10,7 @@ class Menu:
 
     def __init__(self):
         self.f = Finance()
+        self.f.readCSV(self.f.filename)
 
     def mainMenu(self):
         print("\nWelcome to the Finance Tracker!")
@@ -52,11 +53,16 @@ class Menu:
                 case 3:
                     fs.printAllIncomesOrExpenses(self.f, False)
                 case 4:
-                    print(self.fromMenuFilterDates())
+                    print(self.fromMenuFilterDates(printing=True))
                 case 5:
-                    trans_id = input("Enter transaction ID: ").strip()
-                    t = self.f.findTransaction(trans_id)
-                    print(t if t else "Transaction not found.")
+                    trans_id = input("Enter transaction ID (\"q\" to quit): ").strip()
+                    if trans_id == "q":
+                        print("Quitting...")
+                        break
+                    else:
+                        t = self.f.findTransaction(trans_id)
+                        print(t if t else "Transaction not found.")
+                    
                 case 6:
                     return
 
@@ -82,17 +88,17 @@ class Menu:
             option = self.getUserOption(5)
             match option:
                 case 1:
-                    print(self.fromMenuFilterDates())
+                    print(self.fromMenuFilterDates(printing=True))
                 case 2:
-                    fs.incomeByDates(self.f)
+                    fs.income_by_dates(self.f)
                 case 3:
-                    fs.expensesByDates(self.f)
+                    fs.expenses_by_dates(self.f)
                 case 4:
-                    fs.netIncomeByDates(self.f)
+                    fs.net_income_by_dates(self.f)
                 case 5:
                     return
 
-    def fromMenuFilterDates(self, start=None, end=None):
+    def fromMenuFilterDates(self, start=None, end=None, printing=False):
         try:
             start_str = input("Enter the start date (YYYY-MM-DD): ").strip()
             start = dt.strptime(start_str, "%Y-%m-%d")
@@ -101,7 +107,7 @@ class Menu:
         except ValueError:
             print("Error occurred: Invalid date format. Use YYYY-MM-DD.")
             return None
-        return fs.filterRecordsByDates(self.f, start, end)
+        return fs.filter_records_by_dates(self.f, start, end,printing)
 
     def categoryStatsMenu(self):
         print("\nCategory Menu")
@@ -110,9 +116,9 @@ class Menu:
             option = self.getUserOption(3)
             match option:
                 case 1:
-                    fs.mostCommonCategories(self.f)
+                    fs.most_common_categories(self.f)
                 case 2:
-                    fs.amountsByCategory(self.f)
+                    fs.amount_by_category(self.f)
                 case 3:
                     return
 
