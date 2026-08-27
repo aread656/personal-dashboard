@@ -7,8 +7,15 @@ from datetime import datetime
 class Finance:
     def __init__(self, filename = "financeRecords.csv"):
         self.filename = filename
+        self.ensure_file_exists()
         self.transactions = self.readCSV()
-        
+
+    def ensure_file_exists(self):
+        if not os.path.exists(self.filename):
+            with open(self.filename,mode="w",encoding="cp1252",newline="") as f:
+                writer = csv.writer(f)
+                writer.writerow(["id","type","amount","category","date","description"])
+    
     def readCSV(self):
         read_rows = []
         with open(self.filename,mode = "r", encoding="cp1252",newline="") as f:

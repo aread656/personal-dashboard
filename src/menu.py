@@ -10,7 +10,6 @@ class Menu:
 
     def __init__(self):
         self.f = Finance()
-        self.f.readCSV(self.f.filename)
 
     def mainMenu(self):
         print("\nWelcome to the Finance Tracker!")
