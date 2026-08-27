@@ -55,7 +55,7 @@ def generate_sample_expenses(n = 150):
     for i in range(n):
         category = random.choices(
             population = EXPENSE_CATEGORIES,
-            weights = [5, 10, 30, 5, 10, 2, 15, 10, 10],
+            weights = [5, 10, 30, 5, 10, 2, 10, 10, 5, 10],
             k = 1
         )[0]
         match category:

@@ -6,51 +6,23 @@ from .personalFunctions import removeUnwantedRows
 from datetime import datetime
 class Finance:
     def __init__(self, filename = "financeRecords.csv"):
-        self.transactions = []
         self.filename = filename
-    def readCSV(self,path):
-        try:
-            if path is None or isinstance(path,str) == False:
-                raise TypeError("Error: Path must not be None")
-            elif os.path.isdir(path):
-                raise Exception("Error: Path must be to a file, not a directory")
-            output_rows=[]
-            if os.path.exists(path):
-                with open(file=path,mode="r",encoding="cp1252",newline="") as f:
-                    reader = csv.DictReader(f)
-                    for line in reader:
-                        #categorise -amount as expense, +amount as income
-                        amt_str = line["Amount"].replace(",","").strip()
-                        line["is_income"] = float(amt_str) > 0
-                        line["Amount"] = abs(float(amt_str))
+        self.transactions = self.readCSV()
+        
+    def readCSV(self):
+        read_rows = []
+        with open(self.filename,mode = "r", encoding="cp1252",newline="") as f:
+            reader = csv.DictReader(f)
+            for line in reader:
+                is_income = line["type"].strip().lower() == "true"
+                new = Transaction(
+                    is_income,float(line["amount"]),str(line["category"]),
+                    str(line["date"]),str(line["description"])
+                )
+                new.id = str(line["id"])
+                read_rows.append(new)
+        return read_rows
 
-                        #use constants.py CATEGORY_MAP to map to custom categories
-                        category_key = (line.get("Category"),line.get("Subcategory"))
-                        mapped_category = constants.CATEGORY_MAP.get(category_key)
-                        if not mapped_category:
-                            line["Category"]="Misc"
-                        else:
-                            line["Category"]=mapped_category
-
-                        dt = datetime.strptime(line["Date"],"%m/%d/%Y")
-                        line["Date"]=dt.strftime("%Y-%m-%d")
-
-                        #remove unecessary rows
-                        line.pop("Balance",None)
-                        line.pop("Status",None)
-                        line.pop("Reconciled",None)
-                        line.pop("Subcategory",None)
-
-                        new_trans = Transaction(
-                            type = line["is_income"],
-                            amount = line["Amount"], category = line["Category"],
-                            date = line["Date"], description = line["Text"]
-                        )
-                        output_rows.append(new_trans)
-                return output_rows
-        except (Exception,TypeError) as e:
-            print(f"Error: {e}")
-            return None
 
     def addTransaction(self,type,amount,category,date,description):
         #create a new transaction instance

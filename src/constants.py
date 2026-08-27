@@ -1,5 +1,5 @@
 INCOME_CATEGORIES = ["Pay", "Gift", "Dividend", "Loans", "Transfer", "Misc"]
-EXPENSE_CATEGORIES = ["Bills", "Fuel", "Groceries", "Clothing", "Charity", "Emergency", "Leisure", "Transfer", "Misc"]
+EXPENSE_CATEGORIES = ["Bills", "Transport", "Groceries", "Clothing", "Charity", "Emergency", "Leisure", "Transfer", "Savings", "Misc"]
 
 CATEGORY_MAP = {
     ("Salary and pension", "Salary / wages"): "Pay",
