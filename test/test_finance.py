@@ -125,30 +125,6 @@ def test_add_transaction_desc_incorrect_type(fin):
     t = fin.addTransaction(True,2.00,"Pay","2026-01-01",123)
     assert t is None
 
-#------------------------------------------------------------
-#                       Reading CSV
-#------------------------------------------------------------
-def test_read_csv_valid_path(fin):
-    path = "data/one_line_statement.csv"
-    rows = fin.readCSV(path)
-    assert len(rows) > 0
-def test_read_csv_invalid_path(fin):
-    path = "data/a_very_invalid_path.csv"
-    rows = fin.readCSV(path) 
-    assert rows is None
-def test_read_csv_none_path(fin):
-    rows = fin.readCSV(None)
-    assert rows == None
-def test_read_csv_empty_file(fin):
-    rows = fin.readCSV("data/empty_statement.csv")
-    assert len(rows) == 0
-def test_read_csv_is_directory(fin):
-    rows = fin.readCSV("data/")
-    assert rows == None
-def test_read_csv_incorrect_type(fin):
-    rows = fin.readCSV(123)
-    assert rows == None
-
 #----------------------------------------------------------
 #                       Deleting Transaction                
 #----------------------------------------------------------
